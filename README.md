@@ -9,7 +9,7 @@
 | Inversionista / Marketing | *(nombre por confirmar)* | Experiencia en comunicaciones en México, visión comercial "tiburón" |
 | Consultoría hotelera | **Eder** | 10+ años de experiencia, opera 2 hostales propios en Playa del Carmen, red de contactos en la industria hotelera de México. Autor del brief de **Navigo X**. |
 | Ingeniería / Producto | **Alejandro Rivera (Alex)** | Ingeniero de sistemas (IPN-ESCOM). Consultor de digital infrastructure para **Hotel del Principado** (cliente real, laboratorio de validación). Experiencia operativa real como ex-recepcionista. |
-| IA / Web3 | **Brian** | Experto técnico en IA, conocimiento en web3. Aporta la pieza de pagos/liquidación instantánea. |
+| IA (el cerebro) / Web3 | **Brian** | Aporta **For3s OS — el cerebro del marketplace**: memoria en grafo + razonamiento que el marketplace **CONSUME vía API** (For3s OS *no se entrega ni se integra al código del proyecto* — se OCUPA como servicio/caja negra: se conecta y se consume, jamás se expone su interior) para recomendar, recordar al huésped y detectar gustos/patrones. Además, la liquidación de pagos web3 instantánea. La IA no es un extra: **es la inteligencia que hace del catálogo un concierge, no una lista.** |
 
 ## 2. El problema (con nombre y apellido, no abstracto)
 
@@ -42,7 +42,8 @@
 "Usamos IA para automatizar WhatsApp" es *commodity* — cualquier equipo del hackathon puede decir lo mismo. El diferenciador defendible de este equipo es la combinación de:
 
 1. Acceso y validación real con negocios de hospitalidad (Alex + Eder), no un ICP inventado.
-2. **Liquidación de comisión al operador local en minutos, no en 30-60 días**, vía la pieza de pagos/web3 de Brian — esto ataca directamente el segundo dolor real (el operador de tours, no solo el hotel), y conecta con el track de pagos/PayFi del hackathon.
+2. **For3s OS como el CEREBRO del marketplace** — no "IA que automatiza WhatsApp", sino un motor de memoria en grafo + razonamiento que el marketplace **consume vía API** (For3s vive aparte, como caja negra: se conecta y se consume, no se expone). El marketplace le pregunta *"pareja, primera vez en la costa, quiere algo relajado y económico"* y For3s razona sobre el catálogo real + el perfil del huésped y **recomienda las experiencias correctas, recuerda al huésped entre visitas y detecta gustos/patrones** — exactamente lo que Eder busca. Eso convierte un catálogo en un **concierge inteligente**, algo que ni Booking ni Viator tienen.
+3. **Liquidación de comisión al operador local en minutos, no en 30-60 días**, vía la pieza de pagos/web3 — ataca el segundo dolor real (el operador de tours, no solo el hotel) y conecta con el track de pagos/PayFi del hackathon.
 
 ## 6. Preguntas abiertas de la Fase 3 (sin resolver aún)
 
