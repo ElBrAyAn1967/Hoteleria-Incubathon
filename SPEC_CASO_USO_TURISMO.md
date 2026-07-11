@@ -28,11 +28,22 @@ Permitir que un viajero descubra y reserve una experiencia guiada por una person
 3. **Reservar y confirmar** vía el flujo de WhatsApp ya definido.
 4. **Pago simple y transparente** — el turista paga con la confianza de que el anfitrión recibe su parte de inmediato (esto se comunica como señal de confianza, no solo como feature técnico).
 
+## Journey detallado (actualización — integra `Journey de los usuarios & cambios a integrar`)
+
+> Aterrizando la ambigüedad del journey original: esto **no** es una búsqueda abierta tipo Viator, ni un motor de recomendación real. Es una capa ligera de personalización sobre el mismo catálogo pre-cargado de 2-3 anfitriones ya definido arriba. El "mapa" y el "roadmap" son presentación curada de ese catálogo fijo, no un motor de búsqueda/geolocalización real.
+
+1. **Intake de intención + contexto** — antes de mostrar el catálogo, un formulario simple de 2-3 campos: dónde te hospedas (hotel/zona) y presupuesto; opcionalmente, qué quiere vivir (tipo de experiencia/mood, texto libre o categorías simples).
+2. **Selección visual en mapa** — el mapa muestra únicamente las 2-3 experiencias pre-cargadas del catálogo, ubicadas geográficamente y filtradas/ordenadas por presupuesto y cercanía al hospedaje declarado. No es exploración libre ni terceros no verificados.
+3. **Roadmap/journey personalizado** — con las respuestas del formulario, el sistema arma una secuencia simple ("journey") de la(s) experiencia(s) sugerida(s), presentada como una serie de tarjetas (cards), no como una lista de resultados genérica.
+4. **Contenido de cada card** — para dar seguridad y control al turista sin saturar la UI: anfitrión (foto/nombre), rating/estrellas, distancia, medio de transporte sugerido, precio. Mantener UI/UX minimalista — no agregar más campos que estos para el MVP.
+5. **Reserva y pago** — sin cambios respecto al flujo ya definido arriba: WhatsApp → confirmación → pago.
+6. **Feedback post-experiencia** — al terminar cada experiencia, un comentario/calificación corto (rating simple). Uso **interno** para calibrar/mejorar la precisión de futuras recomendaciones — no es un sistema de reviews públicas (ver exclusión abajo, que sigue vigente para el componente público).
+
 ## Fuera de alcance para el MVP
 
-- Sistema de reviews/calificaciones estructurado.
-- Búsqueda libre/exploración tipo marketplace abierto (Viator-style) — el descubrimiento en el MVP depende del canal hotelero, no de que el turista "navegue" la plataforma solo.
-- Geolocalización o mapas de calor (se mencionó en la sesión como idea, pero ya existe en plataformas similares — no es diferenciador, no entra al MVP).
+- **Sistema de reviews/calificaciones públicas y estructuradas** — el rating/comentario post-experiencia del punto 6 arriba es interno (para calibrar recomendaciones), no un sistema de reviews público tipo TripAdvisor.
+- Búsqueda libre/exploración tipo marketplace abierto (Viator-style) — el descubrimiento sigue dependiendo del canal hotelero + el catálogo pre-cargado; el mapa del journey (ver arriba) no es una barra de búsqueda ni exploración libre de terceros.
+- **Actualizado:** un mapa simple del catálogo pre-cargado (2-3 experiencias) y un roadmap personalizado sí entran al MVP (ver "Journey detallado" arriba) — lo que sigue fuera de alcance son mapas de calor, geolocalización en tiempo real, o cualquier capa de exploración geográfica más allá de mostrar el catálogo fijo.
 - Verificación/onboarding complejo de identidad — para el MVP, la confianza inicial la aporta el hotel que ya recomienda al anfitrión, no un sistema de verificación propio.
 
 ## Riesgos identificados en la sesión (no resueltos, a vigilar)

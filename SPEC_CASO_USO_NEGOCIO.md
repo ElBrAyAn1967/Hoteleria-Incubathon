@@ -29,6 +29,17 @@ Dar de alta anfitriones locales reales con el mínimo de fricción posible (asum
 4. **Liquidación de pago instantánea** al confirmarse la experiencia — la pieza técnica de Brian, con evidencia visual (hash de transacción o equivalente) de que el dinero se movió en minutos, no días.
 5. **Vínculo con el canal hotelero:** el hotel/hostal que refirió al anfitrión debe quedar registrado para su comisión — aunque sea de forma simple (no requiere dashboard completo para el MVP).
 
+## Journey detallado del anfitrión/negocio (actualización — integra `Journey de los usuarios & cambios a integrar`)
+
+> Aterrizando la ambigüedad del journey original: esto extiende el alta asistida ya definida arriba (perfil humano del anfitrión), agregando la experiencia concreta que vende y los datos operativos de pago. No cambia el modelo de alta asistida (sigue sin ser autoservicio).
+
+1. **Alta de la experiencia (no solo el perfil del anfitrión)** — formato tipo marketplace, en bullet points: qué incluye, duración, punto de encuentro, qué llevar, precio. Se suma al perfil humano ya definido (foto, bio, especialidad) — el perfil vende a la persona, los bullets de la experiencia venden el producto concreto.
+2. **Datos fiscales del anfitrión** — se capturan en la misma alta asistida (no autoservicio); son el requisito mínimo para poder liquidarle el pago.
+3. **Preferencia de cobro: cash o e-payment** — el anfitrión elige cómo quiere recibir su pago/comisión al momento del alta.
+4. **Visibilidad de datos del turista para personalizar la experiencia** — lo que el turista compartió en su formulario de intake (presupuesto, qué quiere vivir, dónde se hospeda — ver `SPEC_CASO_USO_TURISMO.md`) se muestra al anfitrión antes de la experiencia, para que la pueda ajustar a ese huésped específico.
+5. **Estado de pago visible al anfitrión** — "abonado" (depósito/anticipo) vs. "liquidado" (pago completo liberado). No requiere dashboard financiero completo, solo un estado simple ligado a cada reserva.
+6. **Custodia de efectivo vía hoteles afiliados** — si el anfitrión eligió cobro en cash (punto 3), puede depositar/resguardar ese efectivo en los hoteles afiliados de la red en vez de manejarlo él mismo. Esto le da al hotel/canal un rol operativo adicional más allá de solo referir (ver "Vínculo con el canal hotelero" abajo).
+
 ## Fuera de alcance para el MVP
 
 - Autoservicio completo de alta de anfitriones (formulario público, verificación de identidad, etc.).
