@@ -1,0 +1,32 @@
+# deps
+node_modules/
+.pnp
+.pnp.js
+# next.js
+.next/
+out/
+build/
+dist/
+# env / secretos (NUNCA subir)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# logs
+npm-debug.log*
+yarn-error.log*
+*.log
+# os / editor
+.DS_Store
+.vscode/
+.idea/
+# web3
+artifacts/
+cache/
+typechain-types/
+# db local
+*.sqlite
+*.db
+# (bun.lock SÍ se sube — es el lockfile del proyecto)
+.claude/
