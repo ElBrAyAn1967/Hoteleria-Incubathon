@@ -4,19 +4,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-This is a **planning/spec repository for a hackathon project**, not a codebase. There is no source code, build system, package manager, or test suite yet — only Markdown specs and pitch slide images. Future work in this repo will likely start with scaffolding an actual application based on the specs below.
+This started as a **planning/spec repo** and is now a scaffolded **bun monorepo** (`apps/web` Next.js + `apps/api` Hono + `packages/shared` + `packages/web3`) — see the "Arquitectura y flujo de trabajo" section below and `ESTRUCTURA.md` for the current layout. The original specs still define product scope and constraints.
 
 Product: a B2B marketplace connecting hotels/hostels (≤50 keys) to local experience hosts ("anfitriones locales") in Mexico, with WhatsApp-based booking intake and instant on-chain commission settlement to the host/operator. Working name in docs: "Marketplace de Experiencias" / brief reference "Navigo X"; a broader long-term vision is called "Early Bird Hospitality OS" (explicitly out of scope for the MVP — narrative only, not to be built).
 
 ## Document map
 
-- `README.md` — synthesis of the problem, team, competitive landscape, and the core differentiator (instant commission settlement, not just "WhatsApp + AI").
-- `CHECKLIST_MANANA.md` — pre-build decisions the team must close (validation anchor, jury criteria, "real-time" language, single use case) and discovery questions to ask real business contacts.
-- `ICP_CONTEXTO.md` — target customer profile: hotel/hostel staff drowning in manual WhatsApp coordination with tour operators. ICP is the business (B2B), not the tourist.
-- `MVP_SCOPE.md` — the frozen 36-hour hackathon scope: what's in (WhatsApp intake → pre-loaded catalog → booking confirmation → instant commission payout with on-chain proof) and explicitly what's out (bidirectional PMS sync, real-time multi-operator availability, admin dashboards, KYC/AML). Contains the hour-by-hour hackathon checkpoint schedule.
-- `SPEC_CASO_USO_NEGOCIO.md` — supply-side spec: onboarding local hosts (assisted, not self-service — hosts may have no smartphone), host profile as the actual product (not a generic listing), and the hotel-referral commission link.
-- `SPEC_CASO_USO_TURISMO.md` — demand-side spec: the tourist/guest use case, discovery via hotel staff recommendation (not open marketplace search), and why the host's personality/specialty *is* the product, not metadata.
-- `SLIDES/` — pitch deck images.
+- `README.md` — synthesis of the problem, team, competitive landscape, the core differentiator (instant commission settlement, not just "WhatsApp + AI"), and the local run guide.
+- `ESTRUCTURA.md` — monorepo folder guide (what lives where, how to run it).
+- `docs/specs/CHECKLIST_MANANA.md` — pre-build decisions the team must close (validation anchor, jury criteria, "real-time" language, single use case) and discovery questions to ask real business contacts.
+- `docs/specs/ICP_CONTEXTO.md` — target customer profile: hotel/hostel staff drowning in manual WhatsApp coordination with tour operators. ICP is the business (B2B), not the tourist.
+- `docs/specs/MVP_SCOPE.md` — the frozen 36-hour hackathon scope: what's in (WhatsApp intake → pre-loaded catalog → booking confirmation → instant commission payout with on-chain proof) and explicitly what's out (bidirectional PMS sync, real-time multi-operator availability, admin dashboards, KYC/AML). Contains the hour-by-hour hackathon checkpoint schedule.
+- `docs/specs/SPEC_CASO_USO_NEGOCIO.md` — supply-side spec: onboarding local hosts (assisted, not self-service — hosts may have no smartphone), host profile as the actual product, the hotel-referral commission link, and the host/business journey (experience listing, fiscal data, cash/e-payment, payment status, cash custody at affiliated hotels).
+- `docs/specs/SPEC_CASO_USO_TURISMO.md` — demand-side spec: the tourist/guest use case, discovery via hotel staff recommendation, why the host's personality/specialty *is* the product, and the tourist journey (intake form, curated map, personalized card-based roadmap, private post-experience rating).
+- `docs/specs/JOURNEY_USUARIOS.md` — raw source notes for the journeys integrated into both specs above.
+- `docs/dev/` — stack rules (monorepo workspace conventions, Next.js App Router patterns) — read before touching `apps/web` or `apps/api`.
+- `docs/WEB3_IDEA.md` — notes on the web3/commission-settlement piece.
+- `docs/SLIDES/` — pitch deck images.
+- `apps/web/PRODUCT.md` — brand/mood/design brief for the landing page.
 
 ## Key product constraints to respect when building
 

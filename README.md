@@ -54,8 +54,41 @@ Ver `CHECKLIST_MANANA.md` para el detalle accionable. Resumen:
 
 ## 7. Archivos de este repo
 
-- `README.md` — este archivo, síntesis general.
-- `CHECKLIST_MANANA.md` — checklist accionable para la sesión de equipo de mañana.
-- `ICP_CONTEXTO.md` — perfil de cliente, persona y evidencia de campo.
-- `MVP_SCOPE.md` — qué entra y qué NO entra al MVP de 36h.
-- `PROMPTS_SLIDES.md` — prompts de generación de imágenes para el pitch.
+> Actualizado tras el scaffold del monorepo (bun). Ver `ESTRUCTURA.md` para el detalle completo de carpetas.
+
+- `README.md` — este archivo, síntesis general + guía de ejecución (§8).
+- `CLAUDE.md` — memoria institucional del repo (reglas duras, flujo de trabajo) — leer primero.
+- `ESTRUCTURA.md` — guía de encarpetado del monorepo.
+- `apps/web/` — frontend (Next.js 15 + Tailwind), la landing.
+- `apps/api/` — backend (Hono sobre Bun), único que habla con For3s (caja negra).
+- `packages/shared/` — tipos compartidos web ↔ api.
+- `packages/web3/` — liquidación instantánea de comisión (placeholder).
+- `docs/specs/` — specs de producto (`CHECKLIST_MANANA.md`, `ICP_CONTEXTO.md`, `MVP_SCOPE.md`, `SPEC_CASO_USO_NEGOCIO.md`, `SPEC_CASO_USO_TURISMO.md`, `JOURNEY_USUARIOS.md`).
+- `docs/dev/` — reglas de stack (monorepo, Next.js).
+- `docs/WEB3_IDEA.md` — idea de web3 sobre Next.js.
+- `docs/SLIDES/` — imágenes del pitch.
+
+## 8. Cómo ejecutar (local)
+
+Prerrequisito: [bun](https://bun.sh) instalado (`curl -fsSL https://bun.sh/install | bash`).
+
+```bash
+bun install            # instala todos los workspaces (apps/web, apps/api, packages/*) de una vez
+cp .env.example .env   # copiar plantilla y llenar valores reales (For3s, DB, etc.)
+bun run dev            # levanta web (localhost:3000) + api (localhost:3001) juntos
+```
+
+Comandos sueltos si necesitas correr solo una parte:
+
+```bash
+bun run dev:web        # solo frontend  → http://localhost:3000
+bun run dev:api        # solo backend   → http://localhost:3001 (health check en /health)
+bun run build          # build de producción del frontend (apps/web)
+```
+
+**Variables de entorno clave** (ver `.env.example`):
+- `NEXT_PUBLIC_API_URL` — única variable pública, apunta a nuestro propio backend (`apps/api`), nunca a For3s.
+- `FOR3S_API_URL` / `FOR3S_API_KEY` — credenciales del cerebro For3s (caja negra). **Server-side only, jamás con prefijo `NEXT_PUBLIC_`.** Sin estas variables, el chat responde con un fallback cortés en vez de fallar.
+- `DATABASE_URL`, `NEXT_PUBLIC_CHAIN_ID` / `WEB3_RPC_URL` — persistencia y pieza web3, opcionales para levantar la demo local.
+
+Antes de abrir un PR: `bun run build` en `apps/web` debe pasar. Ver `CLAUDE.md` para las reglas duras (caja negra de For3s, flujo de ramas) y `docs/dev/` para los patrones de stack.
