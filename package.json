@@ -1,0 +1,16 @@
+{
+  "name": "hoteleria-incubathon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marketplace de anfitriones locales — monorepo bun (web + api + web3). Cerebro: For3s OS vía API (caja negra).",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,magenta \"bun run dev:web\" \"bun run dev:api\"",
+    "dev:web": "bun run --cwd apps/web dev",
+    "dev:api": "bun run --cwd apps/api dev",
+    "build": "bun run --cwd apps/web build"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}

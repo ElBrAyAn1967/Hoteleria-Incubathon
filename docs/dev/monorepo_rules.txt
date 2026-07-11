@@ -1,0 +1,8 @@
+# Reglas de stack — Monorepo (npm workspaces)
+
+- Un solo `bun install` en la raíz instala todo. No instalar deps sueltas por carpeta a mano.
+- Código compartido entre apps → packages/shared (tipos) o packages/web3. No duplicar contratos.
+- apps/web = frontend (Next). apps/api = backend (Hono sobre Bun). packages/* = librerías internas.
+- Cada quien su carril: Alex → apps/web (marketplace/UI) + docs/specs. Brian → integración
+  del cerebro For3s (src/lib/for3s.ts) + packages/web3 + apps/api.
+- Flujo: rama por ticket → cambios en scope → verificar → PR. NO push a main. Ver CLAUDE.md.

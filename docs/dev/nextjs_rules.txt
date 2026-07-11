@@ -1,0 +1,13 @@
+# Reglas de stack — Next.js 15 (App Router) + Tailwind
+# Patrones que evitan escribir código que "se ve bien" pero rompe con este stack.
+
+- App Router (carpeta src/app), NO pages router. Componentes son Server Components por
+  defecto; agregar "use client" solo cuando se necesite estado/efectos/eventos del navegador.
+- NUNCA importar funciones/módulos de servidor desde un componente cliente.
+- Variables de entorno: solo las que empiezan con NEXT_PUBLIC_ llegan al navegador. TODO lo
+  secreto (llaves, URLs de For3s, wallets) va SIN ese prefijo y se usa server-side.
+- El cliente de For3s (src/lib/for3s.ts) es SERVER-SIDE: llamarlo desde route handlers
+  (app/api/**/route.ts) o Server Components, jamás desde un componente "use client".
+- Tailwind: usar los tokens del theme (ink, canvas, accent, muted). No hardcodear hex sueltos.
+- Imágenes/video: poner assets en public/. El hero usa /hero.mp4 con fallback /hero-fallback.jpg.
+- Antes de PR: `bun run build` en apps/web debe pasar. No commitear si el build falla.
