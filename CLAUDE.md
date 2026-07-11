@@ -27,3 +27,26 @@ Product: a B2B marketplace connecting hotels/hostels (≤50 keys) to local exper
 - **Instant commission settlement is the actual differentiator** — not the WhatsApp/AI layer, which is commodity. Any payments work should produce visible proof (transaction hash or equivalent) that money moved in minutes, not days/weeks.
 - **Don't over-promise "real-time"** — the agreed pitch language is "response in seconds via automated WhatsApp," not "real-time availability."
 - **Host is not interchangeable** — profile/UX should surface the individual host's personality and specialty, not reduce them to a generic service-provider row.
+
+---
+
+## Arquitectura y flujo de trabajo (Brian) — añadido 2026-07-11
+
+### El código ahora es un monorepo (bun)
+Ver `ESTRUCTURA.md`. Resumen: `apps/web` (Next.js 15, landing) · `apps/api` (Hono sobre Bun) ·
+`packages/shared` (tipos) + `packages/web3` (pago). `bun install` en la raíz; `bun run dev`
+levanta web+api juntos. Specs de este repo viven en `docs/specs/`.
+
+### 🔒 REGLAS DURAS DE LA CAJA NEGRA (For3s — protegen el IP, no romper)
+For3s OS es **el cerebro del marketplace**, pero **NO se entrega ni se integra a este repo**.
+Se CONSUME por API como caja negra (modelo OpenAI: URL + llave + respuestas, nada más).
+1. NUNCA subir a este repo código, lógica, prompts, schema ni arquitectura de For3s. Aquí solo
+   vive el cliente HTTP que lo consume (`apps/web/src/lib/for3s.ts`).
+2. La URL del túnel y la API key de For3s son SECRETAS: solo en `.env` (server-side), JAMÁS con
+   prefijo `NEXT_PUBLIC_` (eso las mandaría al navegador). El navegador nunca ve dónde vive For3s.
+3. Las llamadas a For3s se hacen solo desde el servidor (route handler / RSC / apps/api).
+
+### Flujo de trabajo (cracked-dev)
+- Nadie pushea a `main` directo. Rama por ticket → PR → revisión humana.
+- **`git pull` / `git fetch` antes de ramificar** (ya hubo conflictos por no hacerlo).
+- Lo que sube cada quien va a su carril: specs/docs → `docs/`, front → `apps/web`, etc.
