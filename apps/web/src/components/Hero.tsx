@@ -24,8 +24,8 @@ export function Hero() {
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             {/* Botón principal → flujo del viajero (cotización). Segundo → ver anfitriones. */}
-            <Link href="/request" className="btn-primary">{hero.ctaPrimary}</Link>
-            <Link href="/home" className="btn-ghost">{hero.ctaSecondary}</Link>
+            <Link href="/request" className="btn-primary" data-track="hero_empieza_viaje">{hero.ctaPrimary}</Link>
+            <Link href="/home" className="btn-ghost" data-track="hero_ver_anfitriones">{hero.ctaSecondary}</Link>
           </div>
         </div>
 

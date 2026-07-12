@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { BrandBar } from "@/components/ui/BrandBar";
+import { track } from "@/lib/track";
 import { TextField, TextAreaField, Divider } from "@/components/ui/FormField";
 import type { QuoteRequest } from "@/types/tourist-flow";
 
@@ -47,6 +48,12 @@ export default function RequestPage() {
       presupuestoMXN: Number(presupuesto),
     };
     setEnviando(true);
+    // 🧠 Hito de conversión del funnel → trazabilidad (For3s ve que pidió cotización).
+    track("form_submit", {
+      ruta: "/request",
+      etiqueta: "cotizacion_enviada",
+      meta: { conUbicacionActual: usarUbicacionActual, presupuestoMXN: Number(presupuesto) },
+    });
     // 🔐 Los datos del viajero (ubicación, preferencias, presupuesto) se envían al
     // servidor, que los CIFRA vía @hoteleria/shared/secure-store antes de persistir.
     // Ya no se guarda PII en claro en el navegador. Si el server falla, la demo

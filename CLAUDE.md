@@ -95,6 +95,27 @@ Reglas mecánicas:
 5. El formato cifrado es `enc:v1:...` (versionado) — permite rotar algoritmo/llave a futuro sin
    romper datos viejos. `isEncrypted()` detecta si un valor ya está cifrado (idempotente).
 
+### 🧠 TRAZABILIDAD (capa de analítica — todo el journey se registra por un punto único)
+**El sistema NO tiene base de datos propia para analítica: la memoria es el cerebro consumido por
+API.** Todo el flujo del usuario (navegación, tiempos, scroll, clicks, formularios, chat, fin de
+flujo) se captura y se manda a nuestro endpoint interno, que lo cifra y lo reenvía al cerebro
+(caja negra). Cada sesión de visitante (su `clientId` anónimo) = un hilo, para que el cerebro
+detecte patrones/episodios.
+
+Mecánica (aplícala siempre, sin cablear pantalla por pantalla):
+1. **Captura automática:** `TrackingProvider` (montado una vez en `layout.tsx`) ya traza
+   page_view, tiempo por pantalla, scroll y clicks. **NO lo dupliques.**
+2. **Trazar un click nuevo:** añade `data-track="etiqueta"` al elemento. Nada más — el provider
+   lo capta solo.
+3. **Trazar un hito de negocio** (conversión, fin de flujo): `import { track } from "@/lib/track"`
+   y `track("form_submit", { ruta, etiqueta, meta })`. Ver `/request` y `/feedback` como patrón.
+4. **NUNCA mandes PII en claro por el track.** El contenido sensible (mensajes, contacto,
+   comentarios) NO va en `meta`; solo señales de patrón (calificación, presupuesto, flags). El
+   endpoint `/api/track` ya cifra el lote con `secureRecord` antes de reenviarlo.
+5. **Caja negra:** el navegador solo habla con `/api/track` (mismo dominio). La URL/llave del
+   cerebro viven server-side en `/api/track` — el cliente jamás las ve. `lib/track.ts` y
+   `TrackingProvider.tsx` no contienen ninguna referencia técnica al cerebro.
+
 ### Flujo de trabajo (cracked-dev)
 - Nadie pushea a `main` directo. Rama por ticket → PR → revisión humana.
 - **`git pull` / `git fetch` antes de ramificar** (ya hubo conflictos por no hacerlo).

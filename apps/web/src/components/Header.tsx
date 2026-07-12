@@ -21,7 +21,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <Link href="/request" className="btn-primary !py-2 !px-5 text-sm">
+        <Link href="/request" className="btn-primary !py-2 !px-5 text-sm" data-track="header_cta">
           {brand.header.cta}
         </Link>
       </div>

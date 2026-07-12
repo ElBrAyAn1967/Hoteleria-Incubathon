@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { BrandBar } from "@/components/ui/BrandBar";
+import { track, flush } from "@/lib/track";
 import { ServiceSummaryCard } from "@/components/ui/ServiceSummaryCard";
 import { StarRating } from "@/components/ui/StarRating";
 import { TextAreaField } from "@/components/ui/FormField";
@@ -26,6 +27,10 @@ export default function FeedbackPage() {
     setError(undefined);
     const feedback: FeedbackData = { reservaId: "demo-001", calificacion, comentario };
     sessionStorage.setItem("navigox_feedback", JSON.stringify(feedback));
+    // 🧠 FIN del journey → trazabilidad (solo la calificación como señal de patrón;
+    // el comentario es PII y NO se manda aquí). flush() cierra la sesión enseguida.
+    track("flow_end", { ruta: "/feedback", etiqueta: "resena_enviada", meta: { calificacion } });
+    flush();
     setEnviado(true);
   }
 

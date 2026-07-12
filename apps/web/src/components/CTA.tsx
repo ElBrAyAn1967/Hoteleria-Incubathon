@@ -14,6 +14,7 @@ export function CTA() {
         <p className="mx-auto mt-5 max-w-lg text-lg text-bg/80">{cta.body}</p>
         <Link
           href="/request"
+          data-track="cta_final_empezar"
           className="mt-9 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-primary-deep transition-transform duration-300 ease-out-expo hover:-translate-y-0.5"
         >
           {cta.button}
