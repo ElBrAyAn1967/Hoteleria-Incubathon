@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { BrandBar } from "@/components/ui/BrandBar";
+import { Header } from "@/components/Header";
 import { TextField, TextAreaField, Divider } from "@/components/ui/FormField";
 import type { QuoteRequest } from "@/types/tourist-flow";
 
@@ -54,10 +54,9 @@ export default function RequestPage() {
   }
 
   return (
-    <main className="min-h-screen bg-surface px-4 py-10">
-      <div className="mx-auto max-w-lg">
-        <BrandBar back="/home" label="Anfitriones" />
-      </div>
+    <>
+      <Header />
+      <main className="min-h-screen bg-surface px-4 py-10">
       <form
         onSubmit={handleSubmit}
         noValidate
@@ -128,7 +127,8 @@ export default function RequestPage() {
           )}
         </button>
       </form>
-    </main>
+      </main>
+    </>
   );
 }
 

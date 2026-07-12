@@ -127,6 +127,24 @@ html {
   .star-btn:nth-child(3) svg { animation-delay: 90ms; }
   .star-btn:nth-child(4) svg { animation-delay: 135ms; }
   .star-btn:nth-child(5) svg { animation-delay: 180ms; }
+  /* Header persistente (todas las vistas del flujo turista) — versión
+     compacta con indicador de sección activa (impeccable live, sesión
+     6b343d24). */
+  .site-header-inner {
+    @apply container-content flex items-center justify-between;
+    padding-block: 10px;
+  }
+  .site-header-link { position: relative; }
+  .site-header-link.is-active { color: #1A2A44; }
+  .site-header-link.is-active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background: #1A2A44;
+  }
   /* CTA sólido — sin border+shadow juntos (evita ghost-card de impeccable) */
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-base

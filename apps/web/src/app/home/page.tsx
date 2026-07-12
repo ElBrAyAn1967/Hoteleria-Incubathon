@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { BrandBar } from "@/components/ui/BrandBar";
+import { Header } from "@/components/Header";
 import { Avatar } from "@/components/ui/Avatar";
 import { SearchInput } from "@/components/ui/SearchInput";
 import type { AnfitrionCard } from "@/types/tourist-flow";
@@ -28,9 +28,10 @@ export default function HomePage() {
   );
 
   return (
-    <main className="min-h-screen bg-surface px-4 py-10">
+    <>
+      <Header />
+      <main className="min-h-screen bg-surface px-4 py-10">
       <div className="mx-auto max-w-lg">
-        <BrandBar />
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Avatar nombre="Marta Reyes" />
@@ -77,6 +78,7 @@ export default function HomePage() {
           )}
         </section>
       </div>
-    </main>
+      </main>
+    </>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Header } from "@/components/Header";
 import { BrandBar } from "@/components/ui/BrandBar";
 import { ServiceSummaryCard } from "@/components/ui/ServiceSummaryCard";
 import { StarRating } from "@/components/ui/StarRating";
@@ -31,20 +33,28 @@ export default function FeedbackPage() {
 
   if (enviado) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-surface px-6 text-center">
-        <p className="text-4xl" aria-hidden="true">
-          🌿
-        </p>
-        <h1 className="font-display text-2xl font-semibold text-ink">¡Gracias por tu reseña!</h1>
-        <p className="max-w-sm text-sm text-muted">
-          Tu opinión es privada y ayuda a que el próximo viajero elija mejor a su anfitrión.
-        </p>
-      </main>
+      <>
+        <Header />
+        <main className="flex min-h-[calc(100vh-57px)] flex-col items-center justify-center gap-4 bg-surface px-6 text-center">
+          <p className="text-4xl" aria-hidden="true">
+            🌿
+          </p>
+          <h1 className="font-display text-2xl font-semibold text-ink">¡Gracias por tu reseña!</h1>
+          <p className="max-w-sm text-sm text-muted">
+            Tu opinión es privada y ayuda a que el próximo viajero elija mejor a su anfitrión.
+          </p>
+          <Link href="/home" className="btn-primary mt-2">
+            Volver al inicio
+          </Link>
+        </main>
+      </>
     );
   }
 
   return (
-    <main className="min-h-screen space-y-8 bg-surface px-6 py-10">
+    <>
+      <Header />
+      <main className="min-h-screen space-y-8 bg-surface px-6 py-10">
       <BrandBar back="/itinerary" label="Mi itinerario" />
       <h1 className="font-display text-2xl font-semibold text-ink">Califica tu experiencia</h1>
 
@@ -73,6 +83,7 @@ export default function FeedbackPage() {
           Enviar reseña
         </button>
       </form>
-    </main>
+      </main>
+    </>
   );
 }
