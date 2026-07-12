@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
+import { track } from "@/lib/track";
 import { TextField, TextAreaField, Divider } from "@/components/ui/FormField";
 import type { QuoteRequest } from "@/types/tourist-flow";
 
@@ -34,7 +35,7 @@ export default function RequestPage() {
     return next;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const next = validar();
     setErrors(next);
@@ -47,9 +48,26 @@ export default function RequestPage() {
       presupuestoMXN: Number(presupuesto),
     };
     setEnviando(true);
-    // Mock: en producción esto llamaría a apps/api. Por ahora navegamos directo
-    // al itinerario simulado, guardando solo lo necesario para la demo.
-    sessionStorage.setItem("navigox_quote", JSON.stringify(request));
+    // 🧠 Hito de conversión del funnel → trazabilidad (For3s ve que pidió cotización).
+    track("form_submit", {
+      ruta: "/request",
+      etiqueta: "cotizacion_enviada",
+      meta: { conUbicacionActual: usarUbicacionActual, presupuestoMXN: Number(presupuesto) },
+    });
+    // 🔐 Los datos del viajero (ubicación, preferencias, presupuesto) se envían al
+    // servidor, que los CIFRA vía @hoteleria/shared/secure-store antes de persistir.
+    // Ya no se guarda PII en claro en el navegador. Si el server falla, la demo
+    // continúa igual (no bloquea el flujo).
+    try {
+      const cid = typeof window !== "undefined" ? localStorage.getItem("anf_cid") : null;
+      await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...request, clientId: cid ?? "web-anon" }),
+      });
+    } catch {
+      /* la demo no se cae si el registro falla */
+    }
     router.push("/itinerary");
   }
 

@@ -4,7 +4,10 @@ import type { AnfitrionCard } from "@/types/tourist-flow";
 // tipográfico (emoji) sobre bloque de color para evitar assets faltantes.
 export function GalleryCard({ card }: { card: AnfitrionCard }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-3xl bg-surface transition-transform duration-300 ease-out-expo hover:-translate-y-1">
+    <article
+      data-track={`selecciona_anfitrion:${card.id}`}
+      className="group flex cursor-pointer flex-col overflow-hidden rounded-3xl bg-surface transition-transform duration-300 ease-out-expo hover:-translate-y-1"
+    >
       <div
         className="flex aspect-square items-center justify-center bg-primary text-4xl"
         aria-hidden="true"

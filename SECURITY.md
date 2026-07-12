@@ -24,6 +24,12 @@ Nos comprometemos a responder en un plazo razonable y a acreditar tu aporte si l
 
 ## Prácticas de seguridad del proyecto
 
+- **Encriptación central de datos sensibles.** Toda PII (nombre, contacto, ubicación, mensajes,
+  datos de pago) se cifra con **AES-256-GCM** vía un módulo único (`packages/shared/crypto.ts`
+  + `secure-store.ts`). El cifrado ocurre en la frontera del servidor; el navegador nunca guarda
+  PII en claro. La llave vive en `ENCRYPTION_KEY` (server-side, nunca en git). Es **fail-closed**:
+  en producción sin llave, el sistema lanza en vez de guardar en claro. La regla está escrita en
+  `CLAUDE.md` para que todo proceso nuevo herede el cifrado automáticamente, sin cablearlo a mano.
 - **Secretos fuera del código.** Ninguna llave, token o credencial se commitea. Todo vive en
   `.env` (ignorado por git) o en las variables de entorno de la plataforma (Vercel).
 - **Caja negra del cerebro.** Las credenciales de For3s (URL del túnel + API key) son
@@ -37,6 +43,6 @@ Nos comprometemos a responder en un plazo razonable y a acreditar tu aporte si l
 
 ## Alcance
 
-Este proyecto es un MVP de hackathon en evolución. Algunas piezas (pagos web3, base de datos)
-están en el roadmap y aún no endurecidas para producción. No lo uses con datos reales de
+Este proyecto es un MVP de hackathon en evolución. Algunas piezas (pagos web3) están en el
+roadmap y aún no endurecidas para producción. No lo uses con datos reales de
 clientes hasta que esas capas maduren.

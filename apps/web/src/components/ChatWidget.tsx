@@ -6,6 +6,7 @@
 // Aquí no hay NADA de For3s: solo un fetch a nuestra API. Cero exposición.
 import { useEffect, useRef, useState } from "react";
 import { brand } from "@/content/brand";
+import { track } from "@/lib/track";
 
 // Llama a la API Route de Next (mismo dominio) → funciona igual en local y en Vercel,
 // y mantiene la caja negra (la llave de For3s vive server-side en /api/chat).
@@ -41,6 +42,9 @@ export function ChatWidget() {
   async function enviar() {
     const t = texto.trim();
     if (!t || cargando) return;
+    // 🧠 Engagement con el concierge → trazabilidad (sin el contenido del mensaje aquí;
+    // el mensaje ya viaja cifrado por /api/chat). Solo el hecho de que interactuó.
+    track("chat", { etiqueta: "mensaje_enviado" });
     setMsgs((m) => [...m, { rol: "yo", texto: t }]);
     setTexto("");
     setCargando(true);

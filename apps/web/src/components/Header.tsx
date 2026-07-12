@@ -27,7 +27,7 @@ export function Header() {
           ))}
         </nav>
         {pathname !== "/request" && (
-          <Link href="/request" className="btn-primary !py-1.5 !px-4 text-sm">
+          <Link href="/request" className="btn-primary !py-1.5 !px-4 text-sm" data-track="header_cta">
             {brand.header.cta}
           </Link>
         )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/track";
 import { BookingHeader } from "@/components/host/BookingHeader";
 import { ReservationSummary } from "@/components/host/ReservationSummary";
 import { CalendarGrid } from "@/components/host/CalendarGrid";
@@ -20,6 +21,20 @@ export default function BookingPage() {
     return new Date(hoy.getFullYear(), hoy.getMonth(), 1);
   });
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [confirmado, setConfirmado] = useState(false);
+
+  function confirmar() {
+    if (!selectedDate) return;
+    // 🧠 RESERVACIÓN → trazabilidad al cerebro (hito clave del anfitrión).
+    // Solo señales de patrón: personas + que hubo fecha (la fecha exacta es dato
+    // operativo; se manda como flag, no como PII sensible).
+    track("reservation", {
+      ruta: "/booking",
+      etiqueta: "disponibilidad_confirmada",
+      meta: { personas: resumen.personas, tieneFecha: true },
+    });
+    setConfirmado(true);
+  }
 
   return (
     <main className="flex min-h-screen flex-col bg-bg px-6 py-8">
@@ -43,10 +58,12 @@ export default function BookingPage() {
 
       <button
         type="button"
-        disabled={!selectedDate}
+        disabled={!selectedDate || confirmado}
+        onClick={confirmar}
+        data-track="booking_confirmar"
         className="mt-8 w-full rounded-full bg-primary py-3.5 text-sm font-semibold text-bg transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
       >
-        Confirmar disponibilidad
+        {confirmado ? "✓ Disponibilidad confirmada" : "Confirmar disponibilidad"}
       </button>
     </main>
   );

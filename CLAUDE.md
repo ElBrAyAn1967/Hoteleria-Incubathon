@@ -55,6 +55,70 @@ Se CONSUME por API como caja negra (modelo OpenAI: URL + llave + respuestas, nad
    prefijo `NEXT_PUBLIC_` (eso las mandaría al navegador). El navegador nunca ve dónde vive For3s.
 3. Las llamadas a For3s se hacen solo desde el servidor (route handler / RSC / apps/api).
 
+### 🔐 REGLA DURA DE ENCRIPTACIÓN (todo dato sensible pasa por el módulo central)
+**Existe UN módulo de encriptación central. Todo proceso que maneje datos sensibles lo usa —
+hoy y en el futuro, sin cablearlo componente por componente.** Si estás construyendo o
+modificando cualquier flujo que toque PII (nombre, email, teléfono, WhatsApp, ubicación,
+mensajes del viajero, datos de pago), **estás obligado a pasar por este módulo. No implementes
+cripto a mano, no guardes PII en claro.**
+
+**Módulo:** `packages/shared/crypto.ts` (AES-256-GCM, `node:crypto`, cero dependencias) y su
+capa de conveniencia `packages/shared/secure-store.ts`.
+
+Cómo usarlo (regla mecánica, aplícala siempre):
+```ts
+// Al PERSISTIR / registrar / transmitir datos sensibles (siempre server-side):
+import { secureRecord } from "@hoteleria/shared/secure-store";
+const seguro = secureRecord(datos, ["campoSensibleExtra"]); // cifra PII + añade _id anónimo
+
+// Al LEERLOS de vuelta en el servidor:
+import { readRecord } from "@hoteleria/shared/secure-store";
+const claro = readRecord(registroGuardado);
+
+// Para cifrar/descifrar un valor suelto:
+import { encrypt, decrypt } from "@hoteleria/shared/crypto";
+```
+
+Reglas mecánicas:
+1. **El cifrado ocurre en la frontera del servidor** (API Routes con `runtime = "nodejs"`, o
+   `apps/api`). El módulo usa `node:crypto` → NO corre en el navegador. Nunca cifres en el cliente.
+2. **Todo endpoint nuevo que reciba/guarde PII llama a `secureRecord(...)` antes de persistir.**
+   Ya está cableado en `/api/chat` y `/api/quote` — cópialos como patrón. Datos sensibles del
+   viajero jamás a `localStorage`/`sessionStorage` en claro; mándalos al servidor y cifra ahí.
+3. **La llave vive en `ENCRYPTION_KEY`** (64 hex = 32 bytes), en `.env` local + variables de
+   Vercel/servidor. JAMÁS en git, JAMÁS con prefijo `NEXT_PUBLIC_`. Genera una con
+   `openssl rand -hex 32` (o `generateKey()` del módulo). Fail-closed: en producción sin llave, el
+   sistema LANZA (no guarda nada en claro).
+4. `SENSITIVE_FIELDS` (en `secure-store.ts`) es la lista de campos que se cifran automáticamente
+   si aparecen en el objeto. Si agregas un nuevo campo de PII, añádelo ahí — así se protege en
+   TODO el sistema sin tocar cada llamador.
+5. El formato cifrado es `enc:v1:...` (versionado) — permite rotar algoritmo/llave a futuro sin
+   romper datos viejos. `isEncrypted()` detecta si un valor ya está cifrado (idempotente).
+
+### 🧠 TRAZABILIDAD + PERSISTENCIA (el cerebro es la memoria — NO hay base de datos propia)
+**El sistema NO tiene ni debe tener base de datos (Postgres/Prisma/etc.). La memoria y
+persistencia son el CEREBRO For3s (grafo + episodios), consumido por API — es más potente que
+una DB normal.** TODO se manda a For3s: navegación, tiempos, scroll, clicks, **reservaciones**,
+formularios/cotizaciones, **lo que el usuario escribe**, chat, fin de flujo. Cada evento se
+cifra y se reenvía al cerebro desde un endpoint server-side (caja negra). Cada sesión de
+visitante (su `clientId` anónimo) = un hilo, para que el cerebro detecte patrones/episodios.
+**No agregues `DATABASE_URL`, Prisma, Drizzle, migraciones ni schema — si un flujo necesita
+guardar algo, se manda a For3s.**
+
+Mecánica (aplícala siempre, sin cablear pantalla por pantalla):
+1. **Captura automática:** `TrackingProvider` (montado una vez en `layout.tsx`) ya traza
+   page_view, tiempo por pantalla, scroll y clicks. **NO lo dupliques.**
+2. **Trazar un click nuevo:** añade `data-track="etiqueta"` al elemento. Nada más — el provider
+   lo capta solo.
+3. **Trazar un hito de negocio** (conversión, fin de flujo): `import { track } from "@/lib/track"`
+   y `track("form_submit", { ruta, etiqueta, meta })`. Ver `/request` y `/feedback` como patrón.
+4. **NUNCA mandes PII en claro por el track.** El contenido sensible (mensajes, contacto,
+   comentarios) NO va en `meta`; solo señales de patrón (calificación, presupuesto, flags). El
+   endpoint `/api/track` ya cifra el lote con `secureRecord` antes de reenviarlo.
+5. **Caja negra:** el navegador solo habla con `/api/track` (mismo dominio). La URL/llave del
+   cerebro viven server-side en `/api/track` — el cliente jamás las ve. `lib/track.ts` y
+   `TrackingProvider.tsx` no contienen ninguna referencia técnica al cerebro.
+
 ### Flujo de trabajo (cracked-dev)
 - Nadie pushea a `main` directo. Rama por ticket → PR → revisión humana.
 - **`git pull` / `git fetch` antes de ramificar** (ya hubo conflictos por no hacerlo).
