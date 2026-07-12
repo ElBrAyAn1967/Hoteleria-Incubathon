@@ -34,7 +34,7 @@ export default function RequestPage() {
     return next;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const next = validar();
     setErrors(next);
@@ -47,9 +47,19 @@ export default function RequestPage() {
       presupuestoMXN: Number(presupuesto),
     };
     setEnviando(true);
-    // Mock: en producción esto llamaría a apps/api. Por ahora navegamos directo
-    // al itinerario simulado, guardando solo lo necesario para la demo.
-    sessionStorage.setItem("navigox_quote", JSON.stringify(request));
+    // 🔐 Los datos del viajero (ubicación, preferencias, presupuesto) se envían al
+    // servidor, que los CIFRA vía @hoteleria/shared/secure-store antes de persistir.
+    // Ya no se guarda PII en claro en el navegador. Si el server falla, la demo
+    // continúa igual (no bloquea el flujo).
+    try {
+      await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(request),
+      });
+    } catch {
+      /* la demo no se cae si el registro falla */
+    }
     router.push("/itinerary");
   }
 

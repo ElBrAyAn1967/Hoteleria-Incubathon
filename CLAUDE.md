@@ -55,6 +55,46 @@ Se CONSUME por API como caja negra (modelo OpenAI: URL + llave + respuestas, nad
    prefijo `NEXT_PUBLIC_` (eso las mandaría al navegador). El navegador nunca ve dónde vive For3s.
 3. Las llamadas a For3s se hacen solo desde el servidor (route handler / RSC / apps/api).
 
+### 🔐 REGLA DURA DE ENCRIPTACIÓN (todo dato sensible pasa por el módulo central)
+**Existe UN módulo de encriptación central. Todo proceso que maneje datos sensibles lo usa —
+hoy y en el futuro, sin cablearlo componente por componente.** Si estás construyendo o
+modificando cualquier flujo que toque PII (nombre, email, teléfono, WhatsApp, ubicación,
+mensajes del viajero, datos de pago), **estás obligado a pasar por este módulo. No implementes
+cripto a mano, no guardes PII en claro.**
+
+**Módulo:** `packages/shared/crypto.ts` (AES-256-GCM, `node:crypto`, cero dependencias) y su
+capa de conveniencia `packages/shared/secure-store.ts`.
+
+Cómo usarlo (regla mecánica, aplícala siempre):
+```ts
+// Al PERSISTIR / registrar / transmitir datos sensibles (siempre server-side):
+import { secureRecord } from "@hoteleria/shared/secure-store";
+const seguro = secureRecord(datos, ["campoSensibleExtra"]); // cifra PII + añade _id anónimo
+
+// Al LEERLOS de vuelta en el servidor:
+import { readRecord } from "@hoteleria/shared/secure-store";
+const claro = readRecord(registroGuardado);
+
+// Para cifrar/descifrar un valor suelto:
+import { encrypt, decrypt } from "@hoteleria/shared/crypto";
+```
+
+Reglas mecánicas:
+1. **El cifrado ocurre en la frontera del servidor** (API Routes con `runtime = "nodejs"`, o
+   `apps/api`). El módulo usa `node:crypto` → NO corre en el navegador. Nunca cifres en el cliente.
+2. **Todo endpoint nuevo que reciba/guarde PII llama a `secureRecord(...)` antes de persistir.**
+   Ya está cableado en `/api/chat` y `/api/quote` — cópialos como patrón. Datos sensibles del
+   viajero jamás a `localStorage`/`sessionStorage` en claro; mándalos al servidor y cifra ahí.
+3. **La llave vive en `ENCRYPTION_KEY`** (64 hex = 32 bytes), en `.env` local + variables de
+   Vercel/servidor. JAMÁS en git, JAMÁS con prefijo `NEXT_PUBLIC_`. Genera una con
+   `openssl rand -hex 32` (o `generateKey()` del módulo). Fail-closed: en producción sin llave, el
+   sistema LANZA (no guarda nada en claro).
+4. `SENSITIVE_FIELDS` (en `secure-store.ts`) es la lista de campos que se cifran automáticamente
+   si aparecen en el objeto. Si agregas un nuevo campo de PII, añádelo ahí — así se protege en
+   TODO el sistema sin tocar cada llamador.
+5. El formato cifrado es `enc:v1:...` (versionado) — permite rotar algoritmo/llave a futuro sin
+   romper datos viejos. `isEncrypted()` detecta si un valor ya está cifrado (idempotente).
+
 ### Flujo de trabajo (cracked-dev)
 - Nadie pushea a `main` directo. Rama por ticket → PR → revisión humana.
 - **`git pull` / `git fetch` antes de ramificar** (ya hubo conflictos por no hacerlo).

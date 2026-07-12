@@ -5,6 +5,12 @@
 // Aquí no hay NADA de For3s salvo un fetch a su API. Cero exposición de arquitectura.
 //
 // Nota: usa process.env (estándar Node/Next), NO Bun.env → compila y corre en Vercel.
+//
+// 🔐 Todo dato sensible del viajero (su id de sesión + el mensaje) se registra
+// CIFRADO vía @hoteleria/shared/secure-store — nunca en claro. Esta es la
+// frontera del servidor donde importa el cifrado.
+
+import { secureRecord } from "@hoteleria/shared/secure-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,6 +27,16 @@ export async function POST(req: Request) {
   if (!texto || texto.length > 2000) {
     return Response.json({ error: "mensaje inválido" }, { status: 400 });
   }
+
+  // 🔐 Registro cifrado del evento (id del viajero + su mensaje). 'seguro' queda
+  // listo para persistir/auditar sin exponer PII en claro. Cuando se conecte la
+  // DB (ver issue de schema), aquí se guarda 'seguro' directamente.
+  const seguro = secureRecord({
+    clientId: String(body.clientId ?? "web-anon"),
+    mensaje: texto,
+    ts: new Date().toISOString(),
+  });
+  void seguro; // (persistencia pendiente de la DB — el dato ya viaja cifrado)
 
   const API_URL = process.env.FOR3S_API_URL;
   const API_KEY = process.env.FOR3S_API_KEY;

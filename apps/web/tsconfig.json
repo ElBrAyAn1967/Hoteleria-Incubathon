@@ -14,7 +14,12 @@
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
-    "paths": { "@/*": ["./src/*"] }
+    "paths": {
+      "@/*": ["./src/*"],
+      "@hoteleria/shared/crypto": ["../../packages/shared/crypto.ts"],
+      "@hoteleria/shared/secure-store": ["../../packages/shared/secure-store.ts"],
+      "@hoteleria/shared": ["../../packages/shared/index.ts"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
