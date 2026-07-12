@@ -26,6 +26,37 @@
 Lo que ni Booking ni Viator tienen: integración nativa al canal humano (el hotel) + liquidación
 instantánea al operador local.
 
+## Rutas y flujo de usuario
+
+### Rutas actuales (`apps/web`)
+
+| Ruta | Qué es | Register |
+|---|---|---|
+| `/` | Landing/marketing — hero, cómo funciona, anfitriones destacados, CTA | brand |
+| `/home` | Dashboard del turista — explora categorías de experiencias curadas | brand |
+| `/request` | Formulario para pedir una cotización ("arma tu viaje") | brand |
+| `/itinerary` | Ruta/itinerario propuesto por el cerebro (For3s) + mapa | brand |
+| `/feedback` | Calificación privada post-experiencia | brand |
+| `/booking` | Consola del anfitrión/operador — reservas entrantes | product (neutral) |
+| `/experience` | Consola del anfitrión — gestión de su ficha (foto, texto, disponibilidad) | product (neutral) |
+| `/api/chat` | Endpoint backend (Next.js API Route) — proxy hacia For3s; el frontend nunca habla directo con la caja negra | — |
+
+### Flujo de usuario ideal
+
+**Turista (demanda):**
+1. Llega recomendado por el hotel/hostal → `/` o directo a `/home` si ya viene con contexto.
+2. `/home`: explora categorías/anfitriones curados, o usa el concierge (chat flotante) para pedir algo puntual.
+3. `/request`: pide una cotización con datos rápidos (qué le gusta, cuándo viaja, presupuesto).
+4. `/itinerary`: recibe la ruta armada por el cerebro con el anfitrión asignado.
+5. Vive la experiencia con el anfitrión (coordinación por WhatsApp, pago instantáneo — fuera de la app web).
+6. `/feedback`: califica la experiencia, sin fricción.
+
+**Anfitrión/operador (oferta):**
+1. Onboarding asistido (no self-service) — el equipo carga su ficha con foto/bio/especialidad.
+2. `/booking`: ve las reservas entrantes ya confirmadas, sin coordinar manualmente por WhatsApp.
+3. `/experience`: mantiene actualizada su ficha (fotos, texto, disponibilidad).
+4. Recibe el pago de su comisión al instante (liquidación on-chain), no en 30-60 días.
+
 ---
 
 <details>

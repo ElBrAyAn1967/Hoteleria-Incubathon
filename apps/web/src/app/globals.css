@@ -25,10 +25,39 @@ html {
   }
 }
 
+@keyframes gallery-list-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer components {
   .container-content {
     @apply mx-auto max-w-content px-6;
   }
+  /* Lista de categorías del dashboard (home) — filas con entrada escalonada,
+     reemplaza el grid 2x2 original (impeccable live, sesión 35608c80). */
+  .gallery-list {
+    @apply flex flex-col;
+  }
+  .gallery-list-row {
+    @apply flex items-center gap-4 py-3.5 px-1;
+    border-bottom: 1px solid rgba(var(--shadow-ink), 0.08);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: gallery-list-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .gallery-list-row:last-child {
+    border-bottom: none;
+  }
+  .gallery-list-icon {
+    @apply flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-primary text-2xl;
+  }
+  .gallery-list-row:nth-child(1) { animation-delay: 0ms; }
+  .gallery-list-row:nth-child(2) { animation-delay: 60ms; }
+  .gallery-list-row:nth-child(3) { animation-delay: 120ms; }
+  .gallery-list-row:nth-child(4) { animation-delay: 180ms; }
   /* CTA sólido — sin border+shadow juntos (evita ghost-card de impeccable) */
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-base

@@ -11,7 +11,7 @@ export function Footer() {
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">{footer.tagline}</p>
         </div>
         <div>
-          <h4 className="text-sm font-semibold text-ink">Explora</h4>
+          <h3 className="text-sm font-semibold text-ink">Explora</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted">
             {brand.nav.map((l) => (
               <li key={l.href}>
@@ -21,7 +21,7 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-sm font-semibold text-ink">Contacto</h4>
+          <h3 className="text-sm font-semibold text-ink">Contacto</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted">
             <li>{footer.email}</li>
             <li>{footer.whatsappLabel}</li>

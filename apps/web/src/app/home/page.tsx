@@ -5,7 +5,6 @@ import Link from "next/link";
 import { BrandBar } from "@/components/ui/BrandBar";
 import { Avatar } from "@/components/ui/Avatar";
 import { SearchInput } from "@/components/ui/SearchInput";
-import { GalleryCard } from "@/components/ui/GalleryCard";
 import type { AnfitrionCard } from "@/types/tourist-flow";
 
 const catalogo: AnfitrionCard[] = [
@@ -54,9 +53,15 @@ export default function HomePage() {
         </h1>
         <p className="mt-1 text-sm text-muted">Curado por anfitriones reales, no un catálogo genérico.</p>
 
-        <div className="mt-5 grid grid-cols-2 gap-4">
+        <div className="gallery-list">
           {filtrado.map((card) => (
-            <GalleryCard key={card.id} card={card} />
+            <div key={card.id} className="gallery-list-row">
+              <div className="gallery-list-icon" aria-hidden="true">{card.emoji}</div>
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wide text-accent">{card.categoria}</p>
+                <h3 className="font-display text-base font-semibold text-ink">{card.titulo}</h3>
+              </div>
+            </div>
           ))}
         </div>
         {filtrado.length === 0 && (

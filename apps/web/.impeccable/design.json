@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-12T09:30:00Z",
+  "title": "Design System: NavigoX",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Saigon Night Blue", "canonical": "#1A2A44", "tonalRamp": ["#0A101B", "#101929", "#1A2A44", "#2A3E60", "#4C5870", "#8894A8", "#C4CBD6", "#E1E8EC"] },
+      "primary-deep": { "role": "primary", "displayName": "Saigon Night Blue Deep", "canonical": "#101929" },
+      "accent": { "role": "secondary", "displayName": "Naranja de alerta amable", "canonical": "#F47C3C", "tonalRamp": ["#5C2A0F", "#8C4118", "#C4591F", "#F47C3C", "#F79860", "#FAB588", "#FCD2B0", "#FEEEE0"] },
+      "accent-deep": { "role": "secondary", "displayName": "Naranja de alerta amable (oscuro)", "canonical": "#D9652E" },
+      "surface": { "role": "neutral", "displayName": "Bangkok Pavement Gray", "canonical": "#E1E8EC" },
+      "neutral-bg": { "role": "neutral", "displayName": "Blanco", "canonical": "#FFFFFF" },
+      "muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "#4C5870" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Inter)", "purpose": "Titulares H1-H3, tarjetas de anfitrión." },
+      "body": { "displayName": "Body (Roboto)", "purpose": "Párrafos, labels, texto de UI." }
+    },
+    "shadows": [
+      { "name": "hero-float", "value": "0 20px 60px -20px rgba(26,42,68,0.5)", "purpose": "Separar la imagen de hero del fondo blanco. Nunca combinar con un borde en el mismo elemento." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Easing por defecto en hovers de botones/tarjetas — táctil, sin rebote." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal — fondo azul sólido, se eleva levemente al hover.",
+      "html": "<button class=\"ds-btn-primary\">Empieza tu viaje</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; background: #1A2A44; color: #FFFFFF; padding: 12px 28px; font-size: 1rem; font-weight: 500; border: none; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { transform: translateY(-2px); } .ds-btn-primary:focus-visible { outline: 2px solid #1A2A44; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "CTA secundario — transparente con borde translúcido, nunca combina borde+sombra.",
+      "html": "<button class=\"ds-btn-ghost\">Ver anfitriones</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; background: transparent; color: #1A2A44; padding: 12px 24px; font-size: 1rem; font-weight: 500; border: 1px solid rgba(26,42,68,0.15); transition: border-color 0.3s; } .ds-btn-ghost:hover { border-color: rgba(26,42,68,0.4); }"
+    },
+    {
+      "name": "Host Card",
+      "kind": "card",
+      "refersTo": "anfitrion-card",
+      "description": "Tarjeta de anfitrión — foto real, nombre, especialidad, línea de voz propia. No es una fila de catálogo.",
+      "html": "<div class=\"ds-host-card\"><img class=\"ds-host-card__photo\" src=\"/anfitrion-lucia.svg\" alt=\"Lucía\"/><h3 class=\"ds-host-card__name\">Lucía</h3><p class=\"ds-host-card__focus\">Cocina de mercado · Puerto Escondido</p><p class=\"ds-host-card__line\">Te lleva a desayunar donde desayunan los pescadores.</p></div>",
+      "css": ".ds-host-card { border-radius: 16px; background: #FFFFFF; padding: 24px; } .ds-host-card__photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-host-card:hover .ds-host-card__photo { transform: scale(1.05); } .ds-host-card__name { font-family: var(--font-inter), system-ui, sans-serif; font-weight: 600; font-size: 1.25rem; color: #1A2A44; margin-top: 12px; } .ds-host-card__focus { font-size: 0.875rem; color: #4C5870; } .ds-host-card__line { font-size: 0.95rem; color: #1A2A44; margin-top: 8px; }"
+    },
+    {
+      "name": "Form Field",
+      "kind": "input",
+      "refersTo": "form-field",
+      "description": "Campo de formulario accesible — borde sutil, foco visible sobre primary.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field__label\">Presupuesto (MXN)</span><input class=\"ds-field__input\" type=\"number\"/></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; } .ds-field__label { font-size: 0.875rem; font-weight: 500; color: #1A2A44; } .ds-field__input { border-radius: 16px; border: 1px solid rgba(26,42,68,0.15); padding: 12px 16px; font-size: 1rem; color: #1A2A44; background: #FFFFFF; } .ds-field__input:focus-visible { outline: 2px solid #1A2A44; outline-offset: 1px; border-color: transparent; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El diario de campo",
+    "overview": "NavigoX es el cuaderno de un reportero de calle, no el folleto de una agencia de viajes. La superficie es tranquila y editorial — mucho blanco, un azul nocturno profundo cargando el peso de la voz — porque la verdad de la experiencia vive en la calle, no en la sala de juntas. El naranja aparece poco y a propósito: un aviso amable, nunca un grito, señalando exactamente dónde actuar. El sistema rechaza explícitamente el catálogo genérico de servicios turísticos — cada anfitrión tiene cara, nombre y voz propia; el producto es la persona, no la casilla.",
+    "keyCharacteristics": [
+      "Fondo blanco limpio, casi sin decoración — el contenido carga el peso visual.",
+      "Un solo azul (Saigon Night Blue) para casi todo el texto y los botones sólidos.",
+      "El naranja reservado para llamados a la acción puntuales, nunca como bloque de texto.",
+      "Componentes táctiles: hover con leve elevación/traslación, nunca rebote ni easing agresivo."
+    ],
+    "rules": [
+      { "name": "La regla del naranja raro", "body": "El acento naranja se usa en ≤10% de cualquier pantalla y nunca como color de texto sobre superficies claras.", "section": "colors" },
+      { "name": "La regla del balance", "body": "Todo H1-H3 usa text-wrap: balance; los párrafos largos usan text-wrap: pretty.", "section": "typography" },
+      { "name": "La regla del borde o la sombra, nunca ambos", "body": "Un elemento usa borde translúcido O sombra, nunca ambos en el mismo elemento (el ghost-card prohibido).", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar primary (#1A2A44) para casi todo el texto y los botones sólidos.",
+      "Do reservar el naranja (#F47C3C) para botones/íconos/acentos puntuales.",
+      "Do usar fotografía real de anfitriones como el elemento que carga el peso visual.",
+      "Do dar personalidad propia a cada anfitrión — nunca una fila genérica de proveedor."
+    ],
+    "donts": [
+      "Don't combinar borde + sombra en el mismo elemento.",
+      "Don't usar el naranja de acento como color de texto sobre surface o bg.",
+      "Don't usar eyebrows tracked-uppercase repetidos ni marcadores numerados 01/02/03 como scaffold.",
+      "Don't usar texto degradado, glassmorphism decorativo, ni fondo crema/beige por defecto.",
+      "Don't reducir a los anfitriones a una tarjeta de catálogo intercambiable."
+    ]
+  }
+}
