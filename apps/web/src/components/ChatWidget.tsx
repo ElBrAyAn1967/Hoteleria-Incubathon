@@ -7,7 +7,9 @@
 import { useEffect, useRef, useState } from "react";
 import { brand } from "@/content/brand";
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+// Llama a la API Route de Next (mismo dominio) → funciona igual en local y en Vercel,
+// y mantiene la caja negra (la llave de For3s vive server-side en /api/chat).
+const CHAT_ENDPOINT = "/api/chat";
 
 type Msg = { rol: "bot" | "yo"; texto: string };
 
@@ -43,7 +45,7 @@ export function ChatWidget() {
     setTexto("");
     setCargando(true);
     try {
-      const r = await fetch(`${API}/chat`, {
+      const r = await fetch(CHAT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: t, clientId: clientId() }),

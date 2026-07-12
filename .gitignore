@@ -30,3 +30,5 @@ typechain-types/
 *.db
 # (bun.lock SÍ se sube — es el lockfile del proyecto)
 .claude/
+
+.env.local
