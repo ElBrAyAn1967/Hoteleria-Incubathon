@@ -27,7 +27,7 @@ export function Hero() {
 
         {/* Columna visual — foto real (fallback: bloque verde con textura suave) */}
         <div className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-moss-deep shadow-[0_20px_60px_-20px_oklch(0.30_0.096_140_/_0.5)]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-moss-deep shadow-[0_20px_60px_-20px_rgba(26,37,58,0.5)]">
             {/* TODO(asset): foto real de una experiencia local (costa/manglar/mercado) */}
             <img
               src="/hero-anfitrion.jpg"

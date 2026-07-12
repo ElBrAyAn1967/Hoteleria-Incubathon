@@ -61,7 +61,7 @@ export function ChatWidget() {
       <button
         aria-label="Abrir chat de concierge"
         onClick={() => setAbierto((v) => !v)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-moss text-bg shadow-[0_10px_30px_-8px_oklch(0.30_0.096_140_/_0.6)] transition-transform duration-300 ease-out-expo hover:-translate-y-1"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-moss text-bg shadow-[0_10px_30px_-8px_rgba(26,37,58,0.6)] transition-transform duration-300 ease-out-expo hover:-translate-y-1"
       >
         {abierto ? <IconClose /> : <IconRobot />}
       </button>

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 
-// Contraste tipográfico real (regla impeccable): serif display + sans humanista.
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  axes: ["opsz"],
-});
+// Tipografía Atlas Nexus (docs/design/brand_kit.md): Inter (titulares) + Roboto (cuerpo).
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-roboto",
   display: "swap",
 });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="es" className={`${inter.variable} ${roboto.variable}`}>
       <body className="bg-bg font-sans text-ink antialiased">{children}</body>
     </html>
   );

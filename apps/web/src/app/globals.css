@@ -7,7 +7,7 @@ html {
 }
 
 @layer base {
-  /* Display serif: peso y tracking cuidados (no bajar de -0.04em — regla impeccable) */
+  /* Titulares Inter Bold/SemiBold (Atlas Nexus brand kit) */
   h1, h2, h3 {
     @apply font-display;
     text-wrap: balance;
@@ -22,7 +22,7 @@ html {
   .container-content {
     @apply mx-auto max-w-content px-6;
   }
-  /* CTA sólido verde — sin border+shadow juntos (evita ghost-card de impeccable) */
+  /* CTA sólido Deep Space Blue — sin border+shadow juntos (evita ghost-card de impeccable) */
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-full bg-moss px-7 py-3 text-base
            font-medium text-bg transition-transform duration-300 ease-out-expo
@@ -31,10 +31,10 @@ html {
   .btn-ghost {
     @apply inline-flex items-center gap-2 rounded-full border px-6 py-3
            text-base font-medium text-ink transition-colors duration-300;
-    border-color: oklch(0.22 0.02 150 / 0.15);
+    border-color: rgba(26, 37, 58, 0.15);
   }
   .btn-ghost:hover {
-    border-color: oklch(0.22 0.02 150 / 0.4);
+    border-color: rgba(26, 37, 58, 0.4);
   }
 }
 

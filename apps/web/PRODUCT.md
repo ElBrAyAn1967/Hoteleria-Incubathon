@@ -21,24 +21,25 @@ quién sea el anfitrión (el de arquitectura porfiriana vs. el de la escena de m
   ≤50 llaves que los recomiendan.
 
 ## Mood (la escena, granular)
-"Mañana en la costa de Oaxaca — luz cálida entre palmeras, el verde húmedo del manglar al
-amanecer, la calma de quien conoce el lugar de toda la vida." Naturaleza viva, cálida,
-confiable. NO fintech, NO SaaS, NO modo oscuro. Encendido, luminoso, humano.
+> Actualizado 2026-07-11: se adoptó el kit de marca **Atlas Nexus** (`docs/design/brand_kit.md`)
+> tal cual, reemplazando la paleta verde/mood botánico anterior. El mood ya no es "costa de
+> Oaxaca" sino la identidad técnica de Atlas Nexus (azul espacial + naranja estelar). Modo
+> CLARO siempre.
 
 ## Color strategy
-**Committed** — el verde mate es la identidad y carga la marca (no un acento tímido).
-- Primary (verde moss): `oklch(0.30 0.096 140)` — verde vivo, botánico, "vida en la sombra".
-- bg: blanco cálido, casi puro (chroma mínima hacia el verde, NO cream/beige — eso es el tell IA).
-- ink: casi negro con un pelo de verde, alto contraste (≥4.5:1 en cuerpo).
-- accent: un verde-lima claro / terracota suave para el punto de calor (CTA, detalles).
-- El verde carga el mood; blanco = espacio para respirar (galería). Modo CLARO siempre.
+Paleta oficial **Atlas Nexus** (ver `docs/design/brand_kit.md`):
+- Deep Space Blue `#1A253A` — acento principal (60%): texto, botones, secciones oscuras.
+- Stellar Orange `#F47C3C` — acento secundario (30%): CTA, resaltados, puntos de calor.
+- Lunar Gray `#E5E9EC` — fondo secundario (5%): contenedores/secciones alternas.
+- Data White `#FFFFFF` — lienzo general y texto sobre fondos oscuros (5%).
+- Tipografía: Inter (titulares, Bold/SemiBold) + Roboto (cuerpo, Regular/Medium).
 
 ## Anti-tells (lo que NO hacemos — orden de impeccable)
 - Sin pasos numerados 01/02/03 como scaffold (el flujo se cuenta con imágenes/narrativa, no números).
 - Sin grid de cards idénticas (icono+título+texto repetido).
 - Sin eyebrow tracked-uppercase sobre cada sección.
 - Sin cream/beige de fondo, sin gradient text, sin glassmorphism decorativo.
-- El "wow" viene de imágenes reales de experiencias + tipografía + el verde, no de efectos.
+- El "wow" viene de imágenes reales de experiencias + tipografía + la paleta Atlas Nexus, no de efectos.
 
 ## Diferenciador (lo que se comunica)
 Conexión humana real + curación (no catálogo) + el cerebro que personaliza + pago justo e

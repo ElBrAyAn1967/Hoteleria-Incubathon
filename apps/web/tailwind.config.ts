@@ -1,25 +1,24 @@
 import type { Config } from "tailwindcss";
 
-// Paleta verde mate + blanco cálido (turismo + naturaleza), modo CLARO.
-// Estrategia "committed": el verde carga la identidad; el blanco da el espacio.
-// OKLCH, seed verde moss 140° (guía de impeccable). Contraste verificado ≥4.5:1.
+// Paleta Atlas Nexus (docs/design/brand_kit.md): Deep Space Blue + Stellar Orange.
+// 60% Deep Space Blue / 30% Stellar Orange / 5% Lunar Gray / 5% Data White.
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        bg: "oklch(0.985 0.004 140)",        // blanco cálido casi puro (leve verde, NO cream)
-        surface: "oklch(0.965 0.008 140)",   // capa sutil para separar bloques
-        ink: "oklch(0.22 0.02 150)",         // texto — casi negro con pizca de verde
-        muted: "oklch(0.45 0.015 150)",      // secundario, aún ≥4.5:1 sobre bg
-        moss: "oklch(0.30 0.096 140)",       // verde primario (el protagonista)
-        "moss-deep": "oklch(0.24 0.08 145)", // verde profundo (fondos ricos)
-        lima: "oklch(0.82 0.14 130)",        // acento claro (punto de luz)
-        clay: "oklch(0.70 0.11 55)",         // terracota suave (segundo acento cálido)
+        bg: "#FFFFFF",        // Data White — lienzo general
+        surface: "#E5E9EC",   // Lunar Gray — contenedores/fondos secundarios
+        ink: "#1A253A",       // Deep Space Blue — texto principal
+        muted: "#4B5768",     // variante clara de Deep Space Blue, ≥4.5:1 sobre bg
+        moss: "#1A253A",      // Deep Space Blue — acento principal (60%)
+        "moss-deep": "#10182A", // Deep Space Blue profundo — fondos oscuros ricos
+        lima: "#F47C3C",      // Stellar Orange — CTA/acento secundario (30%)
+        clay: "#D9652E",      // Stellar Orange oscurecido — hover/variación
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "Georgia", "serif"], // serif display
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"], // sans de cuerpo
+        display: ["var(--font-inter)", "system-ui", "sans-serif"], // titulares — Inter Bold/SemiBold
+        sans: ["var(--font-roboto)", "system-ui", "sans-serif"],   // cuerpo — Roboto Regular/Medium
       },
       maxWidth: { content: "1160px" },
       transitionTimingFunction: {
