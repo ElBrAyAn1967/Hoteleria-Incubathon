@@ -19,9 +19,11 @@ Product: a B2B marketplace connecting hotels/hostels (≤50 keys) to local exper
 - `docs/specs/SPEC_CASO_USO_TURISMO.md` — demand-side spec: the tourist/guest use case, discovery via hotel staff recommendation, why the host's personality/specialty *is* the product, and the tourist journey (intake form, curated map, personalized card-based roadmap, private post-experience rating).
 - `docs/specs/JOURNEY_USUARIOS.md` — raw source notes for the journeys integrated into both specs above.
 - `docs/dev/` — stack rules (monorepo workspace conventions, Next.js App Router patterns) — read before touching `apps/web` or `apps/api`.
+- `docs/dev/DUPLICACION.md` — **read before duplicating this repo** into a second branded hackathon project. Says exactly what to ask the user (name/palette/tone) vs. what stays shared (backend, packages, specs).
 - `docs/WEB3_IDEA.md` — notes on the web3/commission-settlement piece.
 - `docs/SLIDES/` — pitch deck images.
 - `apps/web/PRODUCT.md` — brand/mood/design brief for the landing page.
+- `apps/web/src/content/brand.ts` — the single source of truth for the frontend's copy/identity (nav, hero, hosts, CTA, footer, chat strings). Components import from here instead of hardcoding text.
 
 ## Key product constraints to respect when building
 
@@ -46,7 +48,9 @@ levanta web+api juntos. Specs de este repo viven en `docs/specs/`.
 For3s OS es **el cerebro del marketplace**, pero **NO se entrega ni se integra a este repo**.
 Se CONSUME por API como caja negra (modelo OpenAI: URL + llave + respuestas, nada más).
 1. NUNCA subir a este repo código, lógica, prompts, schema ni arquitectura de For3s. Aquí solo
-   vive el cliente HTTP que lo consume (`apps/web/src/lib/for3s.ts`).
+   vive el cliente HTTP que lo consume (`apps/api/src/index.ts` — el proxy `/chat`). No existe
+   ni debe existir un `apps/web/src/lib/for3s.ts`; el frontend solo habla con nuestro propio
+   backend vía `NEXT_PUBLIC_API_URL`.
 2. La URL del túnel y la API key de For3s son SECRETAS: solo en `.env` (server-side), JAMÁS con
    prefijo `NEXT_PUBLIC_` (eso las mandaría al navegador). El navegador nunca ve dónde vive For3s.
 3. Las llamadas a For3s se hacen solo desde el servidor (route handler / RSC / apps/api).
@@ -55,3 +59,12 @@ Se CONSUME por API como caja negra (modelo OpenAI: URL + llave + respuestas, nad
 - Nadie pushea a `main` directo. Rama por ticket → PR → revisión humana.
 - **`git pull` / `git fetch` antes de ramificar** (ya hubo conflictos por no hacerlo).
 - Lo que sube cada quien va a su carril: specs/docs → `docs/`, front → `apps/web`, etc.
+
+### 🧬 Segundo proyecto del hackathon (duplicación) — añadido 2026-07-11
+Este repo se va a duplicar en un **repo aislado** para presentar un segundo proyecto en el
+hackathon: mismo producto/backend/diferenciador, solo cambia la identidad visual del
+frontend y se agregan componentes nuevos. **Antes de ejecutar esa duplicación, lee
+`docs/dev/DUPLICACION.md`** — ahí está el paso a paso, incluyendo la instrucción de
+**preguntar al usuario** por nombre/paleta/tono del segundo proyecto en vez de inventarlos.
+Toda la identidad visual/copy de `apps/web` ya está aislada en `apps/web/src/content/brand.ts`
++ los tokens de color en `apps/web/tailwind.config.ts` — son las únicas piezas que cambian.

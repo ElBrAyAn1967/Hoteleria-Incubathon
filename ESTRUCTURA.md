@@ -14,12 +14,13 @@ Hoteleria-Incubathon/
 │
 ├── apps/                   # las aplicaciones ejecutables
 │   ├── web/                # 🖥️ FRONTEND — Next.js 15 (App Router) + Tailwind
-│   │   ├── src/app/        #   páginas (layout, page = landing clon de pieterkoopt.nl)
-│   │   ├── src/components/ #   Header · Hero · Steps(01/02/03) · CTA · Footer
-│   │   └── src/lib/for3s.ts#   cliente del CEREBRO For3s (consumo por API, caja negra)
+│   │   ├── src/app/        #   páginas (layout, page)
+│   │   ├── src/components/ #   Header · Hero · Como · Anfitriones · CTA · Footer · ChatWidget
+│   │   ├── src/content/brand.ts # 🎨 PUNTO ÚNICO DE MARCA — todo el copy/identidad vive aquí
+│   │   └── tailwind.config.ts   #   tokens de color (bg/surface/ink/muted/primary/accent…)
 │   │
 │   └── api/                # ⚙️ BACKEND — Hono sobre BUN (corre TS nativo), ligero y escalable
-│       └── src/index.ts    #   esqueleto: /health + rutas por venir (issues)
+│       └── src/index.ts    #   /health + /chat (proxy a For3s, caja negra) — único que habla con For3s
 │
 ├── packages/               # código compartido entre apps (no se despliega solo)
 │   ├── shared/             #   tipos compartidos (Anfitrion, Experiencia…) web ↔ api
@@ -27,12 +28,19 @@ Hoteleria-Incubathon/
 │
 ├── docs/                   # 📚 documentación
 │   ├── specs/              #   los specs de Alex/Eder (ICP, MVP, casos de uso negocio/turismo)
-│   ├── dev/                #   reglas de stack (patrones que evitan errores de framework)
+│   ├── dev/                #   reglas de stack + DUPLICACION.md (playbook para el 2º proyecto)
+│   ├── design/brand_kit.md #   kit de marca vigente (Atlas Nexus)
 │   ├── WEB3_IDEA.md        #   la idea de web3 sobre Next.js (para cuando haya tiempo)
 │   └── SLIDES/             #   material del pitch
 │
 └── infra/                  # (futuro) docker-compose, deploy, CI
 ```
+
+> **Duplicación para un segundo proyecto**: este repo se va a copiar a un repo aislado
+> para presentar un segundo proyecto en el hackathon (mismo backend/diferenciador, solo
+> cambia identidad visual + componentes nuevos). Ver `docs/dev/DUPLICACION.md` antes de
+> hacerlo — la identidad visual ya está aislada en `apps/web/src/content/brand.ts` +
+> `apps/web/tailwind.config.ts`, así que duplicar no debería requerir tocar los componentes.
 
 ## Cómo correr (local)
 

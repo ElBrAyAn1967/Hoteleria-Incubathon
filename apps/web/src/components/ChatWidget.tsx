@@ -5,6 +5,7 @@
 // directo. La URL/llave de For3s viven en el servidor; el navegador nunca las ve.
 // Aquí no hay NADA de For3s: solo un fetch a nuestra API. Cero exposición.
 import { useEffect, useRef, useState } from "react";
+import { brand } from "@/content/brand";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 
@@ -13,10 +14,11 @@ type Msg = { rol: "bot" | "yo"; texto: string };
 // id anónimo por navegador (continuidad del hilo, sin datos personales)
 function clientId(): string {
   if (typeof window === "undefined") return "web";
-  let id = localStorage.getItem("anf_cid");
+  const key = brand.chat.clientIdStorageKey;
+  let id = localStorage.getItem(key);
   if (!id) {
     id = "web-" + Math.random().toString(36).slice(2, 10);
-    localStorage.setItem("anf_cid", id);
+    localStorage.setItem(key, id);
   }
   return id;
 }
@@ -24,7 +26,7 @@ function clientId(): string {
 export function ChatWidget() {
   const [abierto, setAbierto] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
-    { rol: "bot", texto: "¡Hola! 🌿 Soy tu concierge local. ¿Qué te gustaría vivir en tu viaje?" },
+    { rol: "bot", texto: brand.chat.greeting },
   ]);
   const [texto, setTexto] = useState("");
   const [cargando, setCargando] = useState(false);
@@ -49,7 +51,7 @@ export function ChatWidget() {
       const data = await r.json();
       setMsgs((m) => [...m, { rol: "bot", texto: data.reply ?? "…" }]);
     } catch {
-      setMsgs((m) => [...m, { rol: "bot", texto: "Ups, intenta de nuevo en un momento." }]);
+      setMsgs((m) => [...m, { rol: "bot", texto: brand.chat.errorReply }]);
     } finally {
       setCargando(false);
     }
@@ -61,21 +63,21 @@ export function ChatWidget() {
       <button
         aria-label="Abrir chat de concierge"
         onClick={() => setAbierto((v) => !v)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-moss text-bg shadow-[0_10px_30px_-8px_rgba(26,37,58,0.6)] transition-transform duration-300 ease-out-expo hover:-translate-y-1"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-bg shadow-[0_10px_30px_-8px_rgba(var(--shadow-ink),0.6)] transition-transform duration-300 ease-out-expo hover:-translate-y-1"
       >
         {abierto ? <IconClose /> : <IconRobot />}
       </button>
 
       {/* Panel de chat */}
       {abierto && (
-        <div className="fixed bottom-24 right-6 z-50 flex h-[30rem] w-[22rem] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-ink/10 bg-bg shadow-[0_24px_60px_-20px_oklch(0.22_0.02_150_/_0.35)]">
-          <header className="flex items-center gap-3 bg-moss px-5 py-4 text-bg">
+        <div className="fixed bottom-24 right-6 z-50 flex h-[30rem] w-[22rem] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-ink/10 bg-bg shadow-[0_24px_60px_-20px_rgba(var(--shadow-ink),0.35)]">
+          <header className="flex items-center gap-3 bg-primary px-5 py-4 text-bg">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-bg/15">
               <IconRobot />
             </span>
             <div>
-              <p className="text-sm font-semibold leading-tight">Concierge local</p>
-              <p className="text-xs text-bg/70">Te ayuda a armar tu experiencia</p>
+              <p className="text-sm font-semibold leading-tight">{brand.chat.panelTitle}</p>
+              <p className="text-xs text-bg/70">{brand.chat.panelSubtitle}</p>
             </div>
           </header>
 
@@ -85,7 +87,7 @@ export function ChatWidget() {
                 <div
                   className={`max-w-[80%] rounded-2xl px-3.5 py-2 text-sm leading-snug ${
                     m.rol === "yo"
-                      ? "bg-moss text-bg"
+                      ? "bg-primary text-bg"
                       : "bg-bg text-ink shadow-sm"
                   }`}
                 >
@@ -108,14 +110,14 @@ export function ChatWidget() {
               value={texto}
               onChange={(e) => setTexto(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && enviar()}
-              placeholder="Escribe tu mensaje…"
+              placeholder={brand.chat.placeholder}
               className="flex-1 rounded-full bg-surface px-4 py-2 text-sm text-ink outline-none placeholder:text-muted"
             />
             <button
               onClick={enviar}
               disabled={cargando}
               aria-label="Enviar"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-moss text-bg transition-transform hover:scale-105 disabled:opacity-50"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-bg transition-transform hover:scale-105 disabled:opacity-50"
             >
               <IconSend />
             </button>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
+import { brand } from "@/content/brand";
 import "./globals.css";
 
 // Tipografía Atlas Nexus (docs/design/brand_kit.md): Inter (titulares) + Roboto (cuerpo).
@@ -16,9 +17,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Anfitriones — vive la ciudad con quien la vive",
-  description:
-    "Conecta con una persona local real que te muestra su ciudad. Experiencias curadas, humanas, no un catálogo.",
+  title: brand.meta.title,
+  description: brand.meta.description,
 };
 
 export default function RootLayout({

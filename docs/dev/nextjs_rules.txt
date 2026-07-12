@@ -6,8 +6,15 @@
 - NUNCA importar funciones/módulos de servidor desde un componente cliente.
 - Variables de entorno: solo las que empiezan con NEXT_PUBLIC_ llegan al navegador. TODO lo
   secreto (llaves, URLs de For3s, wallets) va SIN ese prefijo y se usa server-side.
-- El cliente de For3s (src/lib/for3s.ts) es SERVER-SIDE: llamarlo desde route handlers
-  (app/api/**/route.ts) o Server Components, jamás desde un componente "use client".
-- Tailwind: usar los tokens del theme (ink, canvas, accent, muted). No hardcodear hex sueltos.
-- Imágenes/video: poner assets en public/. El hero usa /hero.mp4 con fallback /hero-fallback.jpg.
+- El cliente de For3s vive del lado del backend (apps/api/src/index.ts), NO en apps/web —
+  este workspace no tiene ni debe tener un src/lib/for3s.ts propio. El frontend solo llama
+  a NUESTRO backend (NEXT_PUBLIC_API_URL), nunca a For3s directo.
+- Tailwind: usar los tokens del theme (bg, surface, ink, muted, primary, primary-deep,
+  accent, accent-deep). No hardcodear hex sueltos — si necesitas una sombra/borde con alpha
+  sobre `ink`, usa la custom property `--shadow-ink` definida en globals.css.
+- Todo el copy de marca (textos, nav, testimonios, anfitriones, footer, chat) vive en
+  apps/web/src/content/brand.ts — los componentes lo importan, no hardcodean strings. Este
+  es el "punto único de marca": para duplicar el proyecto con otra identidad visual, este
+  archivo + los hex de tailwind.config.ts + las imágenes de public/ son lo único que cambia.
+- Imágenes: assets en public/ (hero-anfitrion.svg, anfitrion-*.svg — placeholders SVG).
 - Antes de PR: `bun run build` en apps/web debe pasar. No commitear si el build falla.
