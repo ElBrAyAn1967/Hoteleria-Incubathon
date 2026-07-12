@@ -61,7 +61,7 @@ export default function RequestPage() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="mx-auto max-w-lg rounded-3xl border border-primary/15 bg-bg p-8 shadow-lg"
+        className="form-card mx-auto max-w-lg rounded-3xl bg-bg p-8 shadow-lg"
       >
         <h1 className="font-display text-2xl font-semibold text-primary">Solicita tu cotización</h1>
         <p className="mt-1 text-sm text-muted">Tres datos rápidos y un anfitrión te responde en minutos.</p>
@@ -95,8 +95,8 @@ export default function RequestPage() {
             aria-pressed={usarUbicacionActual}
             className={`mt-3 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium transition-colors ${
               usarUbicacionActual
-                ? "border-primary bg-primary text-bg"
-                : "border-surface text-ink hover:border-primary"
+                ? "border-accent bg-accent text-bg"
+                : "border-surface text-ink hover:border-accent"
             }`}
           >
             <IconLocate />
@@ -120,7 +120,12 @@ export default function RequestPage() {
         </div>
 
         <button type="submit" disabled={enviando} className="btn-primary mt-9 w-full justify-center disabled:opacity-60">
-          {enviando ? "Enviando…" : "Enviar solicitud"}
+          {enviando ? "Enviando…" : (
+            <>
+              Enviar solicitud
+              <IconSend />
+            </>
+          )}
         </button>
       </form>
     </main>
@@ -140,6 +145,14 @@ function IconLocate() {
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="3" />
       <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+    </svg>
+  );
+}
+function IconSend() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 2 11 13" />
+      <path d="M22 2 15 22l-4-9-9-4 20-7z" />
     </svg>
   );
 }

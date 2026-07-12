@@ -32,6 +32,44 @@ html {
   }
 }
 
+@keyframes form-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes route-map-ring-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes route-map-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes star-flash {
+  0% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 rgba(245, 158, 11, 0));
+  }
+  45% {
+    transform: scale(1.2);
+    filter: brightness(1.6) drop-shadow(0 0 10px rgba(245, 158, 11, 0.95));
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 5px rgba(245, 158, 11, 0.55));
+  }
+}
+
 @layer components {
   .container-content {
     @apply mx-auto max-w-content px-6;
@@ -58,6 +96,37 @@ html {
   .gallery-list-row:nth-child(2) { animation-delay: 60ms; }
   .gallery-list-row:nth-child(3) { animation-delay: 120ms; }
   .gallery-list-row:nth-child(4) { animation-delay: 180ms; }
+  /* Entrada de la tarjeta flotante (form de cotización, home) — un solo
+     movimiento al cargar, no scroll-reflex repetido por sección. */
+  .form-card {
+    animation: form-card-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  /* Mapa circular (itinerary) — cuadrícula tipo carta náutica que aparece
+     escalonada y la ruta se dibuja con un trazo animado (impeccable live,
+     sesión c71ced16). */
+  .route-map-grid circle {
+    opacity: 0;
+    animation: route-map-ring-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .route-map-grid circle:nth-child(1) { animation-delay: 0ms; }
+  .route-map-grid circle:nth-child(2) { animation-delay: 80ms; }
+  .route-map-grid circle:nth-child(3) { animation-delay: 160ms; }
+  .route-map-route {
+    stroke-dasharray: 160;
+    stroke-dashoffset: 160;
+    animation: route-map-draw 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+  }
+  /* Destello dorado al calificar (feedback) — impeccable live, sesión e1edc2e0. */
+  .star-btn { position: relative; }
+  .star-btn.is-filled svg {
+    animation: star-flash 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 0 7px rgba(245, 158, 11, 0.85));
+  }
+  .star-btn:nth-child(1) svg { animation-delay: 0ms; }
+  .star-btn:nth-child(2) svg { animation-delay: 45ms; }
+  .star-btn:nth-child(3) svg { animation-delay: 90ms; }
+  .star-btn:nth-child(4) svg { animation-delay: 135ms; }
+  .star-btn:nth-child(5) svg { animation-delay: 180ms; }
   /* CTA sólido — sin border+shadow juntos (evita ghost-card de impeccable) */
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-base

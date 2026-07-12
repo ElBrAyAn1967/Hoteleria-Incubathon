@@ -26,7 +26,7 @@ export function StarRating({ value, onChange }: StarRatingProps) {
           onFocus={() => setHover(n)}
           onBlur={() => setHover(0)}
           onClick={() => onChange(n)}
-          className="transition-transform hover:scale-110"
+          className={`star-btn transition-transform hover:scale-110 ${n <= activo ? "is-filled" : ""}`}
         >
           <StarIcon filled={n <= activo} />
         </button>
