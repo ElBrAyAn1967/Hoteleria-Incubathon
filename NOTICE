@@ -1,0 +1,15 @@
+NavigoX — Marketplace de Anfitriones Locales
+Copyright (c) 2026 Alejandro Rivera, Brian López, Eder (equipo Incubathon)
+
+Este software se distribuye bajo la GNU Affero General Public License v3.0 (AGPL-3.0).
+Ver el archivo LICENSE para el texto completo.
+
+Condiciones clave:
+  • Puedes usar, estudiar, modificar y redistribuir este software.
+  • Si lo ofreces como servicio en red (SaaS), DEBES publicar tus modificaciones
+    bajo la misma licencia (cláusula AGPL de red).
+  • Debes conservar este aviso de copyright y la atribución a los autores originales.
+
+Componente externo: el razonamiento del concierge lo provee For3s OS, consumido como
+servicio (API caja negra). For3s OS NO forma parte de este repositorio ni de esta
+licencia — es un servicio externo con sus propios términos.

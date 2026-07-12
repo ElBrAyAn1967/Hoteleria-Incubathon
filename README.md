@@ -1,4 +1,35 @@
-# Marketplace de Experiencias — Hospitality Tech
+# NavigoX — Marketplace de Anfitriones Locales
+
+[![CI](https://github.com/ElBrAyAn1967/Hoteleria-Incubathon/actions/workflows/ci.yml/badge.svg)](https://github.com/ElBrAyAn1967/Hoteleria-Incubathon/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/ElBrAyAn1967/Hoteleria-Incubathon/actions/workflows/codeql.yml/badge.svg)](https://github.com/ElBrAyAn1967/Hoteleria-Incubathon/actions/workflows/codeql.yml)
+[![Deploy](https://img.shields.io/badge/Vercel-live-success?logo=vercel)](https://hoteleria-incubathon-web.vercel.app)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
+[![bun](https://img.shields.io/badge/runtime-bun-black?logo=bun)](https://bun.sh)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=nextdotjs)](https://nextjs.org)
+
+> **Conoce la ciudad con quien de verdad la vive.** No un tour de catálogo — una persona local
+> real que te muestra su versión del lugar. Un marketplace de experiencias con **descubrimiento
+> desde el hotel**, **recomendación inteligente** (cerebro consumido por API) y **pago justo e
+> instantáneo** al anfitrión.
+
+**🌐 Demo en vivo:** [hoteleria-incubathon-web.vercel.app](https://hoteleria-incubathon-web.vercel.app)
+
+## El diferenciador (no el genérico)
+
+"Usar IA para automatizar WhatsApp" es *commodity*. Lo defendible aquí es la combinación de:
+
+1. **Validación real** con negocios de hospitalidad (no un ICP inventado).
+2. **El cerebro que personaliza** — un concierge que razona sobre tu perfil + los anfitriones
+   disponibles y arma tu ruta (consumido como servicio, caja negra).
+3. **Pago instantáneo al anfitrión** — comisión en minutos, no en semanas.
+
+Lo que ni Booking ni Viator tienen: integración nativa al canal humano (el hotel) + liquidación
+instantánea al operador local.
+
+---
+
+<details>
+<summary>📋 Contexto completo del proyecto (equipo, problema, estado del arte)</summary>
 
 > Documento de síntesis generado la noche previa al Hackathon. Punto de partida para la sesión de equipo de mañana. Todo lo marcado como `[ABIERTO]` requiere decisión o validación del equipo completo antes de empezar a construir.
 
@@ -92,3 +123,6 @@ bun run build          # build de producción del frontend (apps/web)
 - `DATABASE_URL`, `NEXT_PUBLIC_CHAIN_ID` / `WEB3_RPC_URL` — persistencia y pieza web3, opcionales para levantar la demo local.
 
 Antes de abrir un PR: `bun run build` en `apps/web` debe pasar. Ver `CLAUDE.md` para las reglas duras (caja negra de For3s, flujo de ramas) y `docs/dev/` para los patrones de stack.
+
+
+</details>

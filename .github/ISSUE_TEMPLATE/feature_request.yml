@@ -1,0 +1,14 @@
+name: 💡 Propuesta / feature
+description: Una idea o mejora para el marketplace
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: ¿Qué propones?
+      description: Qué feature o mejora, y qué problema resuelve.
+    validations: { required: true }
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto / notas
