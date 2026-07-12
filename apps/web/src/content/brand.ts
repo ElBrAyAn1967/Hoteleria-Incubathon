@@ -16,10 +16,12 @@ export const brand = {
       "Conecta con una persona local real que te muestra su ciudad. Experiencias curadas, humanas, no un catálogo.",
   },
 
+  // Nav cableada a los flujos REALES del producto (no anclas). Cada link lleva a
+  // una pantalla funcional para que el jurado navegue todo el producto desde la home.
   nav: [
     { href: "#como", label: "Cómo funciona" },
-    { href: "#anfitriones", label: "Anfitriones" },
-    { href: "#hoteles", label: "Para hoteles" },
+    { href: "/home", label: "Anfitriones" },
+    { href: "/request", label: "Arma tu viaje" },
   ],
 
   header: {

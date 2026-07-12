@@ -6,7 +6,7 @@ export function WhatsAppButton({ label = "Mandar WhatsApp" }: { label?: string }
       href="https://wa.me/"
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-300 ease-out-expo hover:-translate-y-0.5"
+      className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-bg shadow-lg transition-transform duration-300 ease-out-expo hover:-translate-y-0.5"
     >
       <IconWhatsApp />
       {label}

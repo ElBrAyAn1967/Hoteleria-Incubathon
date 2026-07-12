@@ -1,3 +1,4 @@
+import { BrandBar } from "@/components/ui/BrandBar";
 import { MediaTextBlock } from "@/components/host/MediaTextBlock";
 import { VideoUploadCard } from "@/components/host/VideoUploadCard";
 import type { MediaTextBlockData } from "@/types/host-flow";
@@ -23,10 +24,11 @@ const bloques: MediaTextBlockData[] = [
 // Carga de experiencia del anfitrión — misma paleta neutra que /booking.
 export default function ExperiencePage() {
   return (
-    <main className="space-y-10 bg-white px-6 py-8">
+    <main className="min-h-screen space-y-10 bg-bg px-6 py-8">
       <header>
-        <h1 className="text-4xl font-extrabold text-gray-900">Sube tu experiencia</h1>
-        <p className="mt-1 text-sm text-gray-500">Así la va a ver el viajero antes de reservar contigo.</p>
+        <BrandBar back="/booking" label="Agenda" />
+        <h1 className="font-display text-4xl font-extrabold text-ink">Sube tu experiencia</h1>
+        <p className="mt-1 text-sm text-muted">Así la va a ver el viajero antes de reservar contigo.</p>
       </header>
 
       <VideoUploadCard />
@@ -37,7 +39,7 @@ export default function ExperiencePage() {
         ))}
       </section>
 
-      <button type="button" className="w-full rounded-full bg-gray-900 py-3.5 text-sm font-semibold text-white">
+      <button type="button" className="w-full rounded-full bg-primary py-3.5 text-sm font-semibold text-bg">
         Publicar experiencia
       </button>
     </main>

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { BrandBar } from "@/components/ui/BrandBar";
 import { ServiceSummaryCard } from "@/components/ui/ServiceSummaryCard";
 import { StarRating } from "@/components/ui/StarRating";
 import { TextAreaField } from "@/components/ui/FormField";
@@ -44,6 +45,7 @@ export default function FeedbackPage() {
 
   return (
     <main className="min-h-screen space-y-8 bg-surface px-6 py-10">
+      <BrandBar back="/itinerary" label="Mi itinerario" />
       <h1 className="font-display text-2xl font-semibold text-ink">Califica tu experiencia</h1>
 
       <ServiceSummaryCard titulo="Cocina de mercado con Lucía" subtitulo="Puerto Escondido · completado" />

@@ -46,30 +46,30 @@ export function CalendarGrid({ visibleMonth, selectedDate, onMonthChange, onSele
   }
 
   return (
-    <section aria-label="Calendario de disponibilidad" className="rounded-2xl border border-gray-200 p-4">
+    <section aria-label="Calendario de disponibilidad" className="rounded-2xl border border-ink/10 p-4">
       <div className="flex items-center justify-between">
         <button
           type="button"
           onClick={mesAnterior}
           aria-label="Mes anterior"
-          className="flex h-8 w-8 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-ink hover:bg-surface"
         >
           <IconChevronLeft />
         </button>
-        <p aria-live="polite" className="text-sm font-semibold capitalize text-gray-900">
+        <p aria-live="polite" className="text-sm font-semibold capitalize text-ink">
           {etiquetaMes}
         </p>
         <button
           type="button"
           onClick={mesSiguiente}
           aria-label="Mes siguiente"
-          className="flex h-8 w-8 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-ink hover:bg-surface"
         >
           <IconChevronRight />
         </button>
       </div>
 
-      <div className="mt-4 grid grid-cols-7 gap-y-2 text-center text-xs text-gray-500">
+      <div className="mt-4 grid grid-cols-7 gap-y-2 text-center text-xs text-muted">
         {DIAS_SEMANA.map((d, i) => (
           <span key={`${d}-${i}`}>{d}</span>
         ))}
@@ -90,10 +90,10 @@ export function CalendarGrid({ visibleMonth, selectedDate, onMonthChange, onSele
               onClick={() => onSelectDate(dia)}
               className={`mx-auto flex h-9 w-9 items-center justify-center rounded-full text-sm transition-colors ${
                 seleccionado
-                  ? "bg-gray-900 text-white"
+                  ? "bg-primary text-bg"
                   : pasado
-                    ? "cursor-not-allowed text-gray-300"
-                    : "text-gray-700 hover:bg-gray-100"
+                    ? "cursor-not-allowed text-muted/50"
+                    : "text-ink hover:bg-surface"
               }`}
             >
               {dia.getDate()}

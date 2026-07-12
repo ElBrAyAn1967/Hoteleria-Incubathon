@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { BrandBar } from "@/components/ui/BrandBar";
 import { Avatar } from "@/components/ui/Avatar";
 import { SearchInput } from "@/components/ui/SearchInput";
 import { GalleryCard } from "@/components/ui/GalleryCard";
@@ -29,6 +30,7 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-bg p-6">
+      <BrandBar />
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Avatar nombre="Marta Reyes" />

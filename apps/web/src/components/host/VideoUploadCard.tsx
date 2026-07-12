@@ -8,21 +8,21 @@ export function VideoUploadCard() {
   const [reproduciendo, setReproduciendo] = useState(false);
 
   return (
-    <div className="group relative aspect-video overflow-hidden rounded-3xl border-2 border-dashed border-gray-300 bg-gray-50 transition-colors hover:border-gray-900">
+    <div className="group relative aspect-video overflow-hidden rounded-3xl border-2 border-dashed border-ink/15 bg-surface transition-colors hover:border-primary">
       <div className="flex h-full w-full items-center justify-center">
         {reproduciendo ? (
-          <p className="text-sm text-gray-500" role="status">
+          <p className="text-sm text-muted" role="status">
             Reproduciendo vista previa…
           </p>
         ) : (
-          <p className="text-sm text-gray-500">Arrastra tu video aquí o toca para subir</p>
+          <p className="text-sm text-muted">Arrastra tu video aquí o toca para subir</p>
         )}
       </div>
       <button
         type="button"
         onClick={() => setReproduciendo((v) => !v)}
         aria-label={reproduciendo ? "Pausar vista previa" : "Reproducir vista previa"}
-        className="absolute inset-0 m-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-900/80 text-white backdrop-blur-sm transition-transform hover:scale-105"
+        className="absolute inset-0 m-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/80 text-bg backdrop-blur-sm transition-transform hover:scale-105"
       >
         {reproduciendo ? <IconPause /> : <IconPlay />}
       </button>

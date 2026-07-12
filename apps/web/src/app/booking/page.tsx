@@ -11,9 +11,9 @@ const resumen: ReservationSummaryData = {
   notas: ["placeholder", "placeholder", "placeholder"],
 };
 
-// Agendamiento del anfitrión — paleta neutra (gray-50…gray-900) a propósito,
-// distinta del app del turista: consola de trabajo tipo editorial, sin color
-// de marca. Ver master prompt del flujo de proveedor de servicio.
+// Agendamiento del anfitrión — usa los MISMOS tokens de marca que la landing
+// (bg/surface/ink/muted/primary) para que todo el producto se sienta uno solo.
+// Consola de trabajo tipo editorial: sobria, pero coherente con el resto.
 export default function BookingPage() {
   const [visibleMonth, setVisibleMonth] = useState(() => {
     const hoy = new Date();
@@ -22,7 +22,7 @@ export default function BookingPage() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   return (
-    <main className="flex min-h-screen flex-col bg-white px-6 py-8">
+    <main className="flex min-h-screen flex-col bg-bg px-6 py-8">
       <BookingHeader nombre="Diego" />
       <ReservationSummary data={resumen} />
       <CalendarGrid
@@ -33,9 +33,9 @@ export default function BookingPage() {
       />
 
       {selectedDate && (
-        <p className="mt-4 text-sm text-gray-500" aria-live="polite">
+        <p className="mt-4 text-sm text-muted" aria-live="polite">
           Fecha seleccionada:{" "}
-          <span className="font-semibold text-gray-900">
+          <span className="font-semibold text-ink">
             {selectedDate.toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" })}
           </span>
         </p>
@@ -44,7 +44,7 @@ export default function BookingPage() {
       <button
         type="button"
         disabled={!selectedDate}
-        className="mt-8 w-full rounded-full bg-gray-900 py-3.5 text-sm font-semibold text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-8 w-full rounded-full bg-primary py-3.5 text-sm font-semibold text-bg transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
       >
         Confirmar disponibilidad
       </button>

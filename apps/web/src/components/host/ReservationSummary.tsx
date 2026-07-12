@@ -6,16 +6,16 @@ export function ReservationSummary({ data }: { data: ReservationSummaryData }) {
   return (
     <section
       aria-label="Resumen de tu próxima reserva"
-      className="my-6 rounded-2xl border border-gray-200 bg-gray-50 p-4"
+      className="my-6 rounded-2xl border border-ink/10 bg-surface p-4"
     >
-      <div className="flex items-center gap-2 text-gray-900">
+      <div className="flex items-center gap-2 text-ink">
         <IconUsers />
         <span className="text-lg font-semibold">{data.personas} personas</span>
       </div>
 
       <ul className="mt-4 space-y-2" aria-hidden="true">
         {data.notas.map((_, i) => (
-          <li key={i} className="h-2.5 animate-pulse rounded-full bg-gray-200" style={{ width: `${85 - i * 15}%` }} />
+          <li key={i} className="h-2.5 animate-pulse rounded-full bg-surface" style={{ width: `${85 - i * 15}%` }} />
         ))}
       </ul>
     </section>

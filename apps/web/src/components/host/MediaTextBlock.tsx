@@ -11,14 +11,14 @@ export function MediaTextBlock({ data, reverse = false }: MediaTextBlockProps) {
   return (
     <article className={`flex items-center gap-5 ${reverse ? "flex-row-reverse" : "flex-row"}`}>
       <div
-        className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-gray-200 bg-gray-100 text-gray-400"
+        className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-ink/10 bg-surface text-muted"
         aria-hidden="true"
       >
         <IconImage />
       </div>
       <div>
-        <h3 className="text-base font-semibold text-gray-900">{data.titulo}</h3>
-        <p className="mt-1 text-sm text-gray-500">{data.descripcion}</p>
+        <h3 className="text-base font-semibold text-ink">{data.titulo}</h3>
+        <p className="mt-1 text-sm text-muted">{data.descripcion}</p>
       </div>
     </article>
   );

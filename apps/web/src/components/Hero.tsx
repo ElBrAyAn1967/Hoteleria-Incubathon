@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { brand } from "@/content/brand";
 
 // Hero — color primario como protagonista, blanco cálido de respiro. Serif display
@@ -22,8 +23,9 @@ export function Hero() {
             {hero.body}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href="#como" className="btn-primary">{hero.ctaPrimary}</a>
-            <a href="#anfitriones" className="btn-ghost">{hero.ctaSecondary}</a>
+            {/* Botón principal → flujo del viajero (cotización). Segundo → ver anfitriones. */}
+            <Link href="/request" className="btn-primary">{hero.ctaPrimary}</Link>
+            <Link href="/home" className="btn-ghost">{hero.ctaSecondary}</Link>
           </div>
         </div>
 
