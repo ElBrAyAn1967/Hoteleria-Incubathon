@@ -29,7 +29,7 @@ Hoteleria-Incubathon/
 ├── docs/                   # 📚 documentación
 │   ├── specs/              #   los specs de Alex/Eder (ICP, MVP, casos de uso negocio/turismo)
 │   ├── dev/                #   reglas de stack + DUPLICACION.md (playbook para el 2º proyecto)
-│   ├── design/brand_kit.md #   kit de marca vigente (Atlas Nexus)
+│   ├── design/brand_kit.md #   kit de marca vigente (NavigoX)
 │   ├── WEB3_IDEA.md        #   la idea de web3 sobre Next.js (para cuando haya tiempo)
 │   └── SLIDES/             #   material del pitch
 │

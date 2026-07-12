@@ -3,7 +3,7 @@ import { Inter, Roboto } from "next/font/google";
 import { brand } from "@/content/brand";
 import "./globals.css";
 
-// Tipografía Atlas Nexus (docs/design/brand_kit.md): Inter (titulares) + Roboto (cuerpo).
+// Tipografía NavigoX (docs/design/brand_kit.md): Inter (titulares) + Roboto (cuerpo).
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",

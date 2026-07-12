@@ -10,11 +10,11 @@ html {
   /* RGB de `ink`/`primary` en tailwind.config.ts — usado en sombras/bordes con
      alpha que no pueden expresarse como clase de Tailwind. Si cambias ese hex,
      actualiza este valor también. */
-  --shadow-ink: 26, 37, 58;
+  --shadow-ink: 26, 42, 68;
 }
 
 @layer base {
-  /* Titulares Inter Bold/SemiBold (Atlas Nexus brand kit) */
+  /* Titulares Inter Bold/SemiBold (NavigoX brand kit) */
   h1, h2, h3 {
     @apply font-display;
     text-wrap: balance;

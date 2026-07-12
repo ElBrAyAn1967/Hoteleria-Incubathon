@@ -1,81 +1,70 @@
+# Kit de Marca de NavigoX
 
-```markdown
-# Kit de Marca de Atlas Nexus
+Este documento reemplaza el placeholder anterior ("Atlas Nexus") y define la identidad
+visual oficial de **NavigoX** para `apps/web`. Los valores HEX de la tabla de colores son
+la fuente de verdad — cualquier columna RGB que se haya recibido junto con este kit no era
+consistente con su HEX correspondiente y se descartó intencionalmente (ver nota al final).
 
-Este documento proporciona las directrices oficiales para mantener la identidad visual del proyecto **Atlas Nexus** (docs/project-atlas). Para garantizar la coherencia en todas las plataformas y materiales de documentación, por favor sigue estas pautas de diseño.
+## 1. Concepto de logotipo
 
-## Guía Visual de Marca (Hoja de Referencia)
+El logotipo de NavigoX combina un compás de cartografía con una red de datos global
+interconectada — simboliza la navegación precisa a través de conexiones globales
+complejas. Tagline: **"Navigate Global Connections"**.
 
-A continuación se muestra una descripción general visual del kit de marca completo, incluyendo el logotipo principal, las variaciones, la paleta de colores y las especificaciones de tipografía.
+> Nota de implementación: hoy `apps/web` no tiene un marca gráfica (SVG) propia — el
+> Header/Footer usan solo el wordmark tipográfico (`brand.siteName` = "NavigoX" en
+> `apps/web/src/content/brand.ts`). Si se quiere el ícono del compás como asset real,
+> es un encargo aparte (diseño de un SVG), no incluido en este cambio de paleta/tipografía.
 
-![Guía Visual de Marca de Atlas Nexus](image_10.png)
-*Referencia Visual Completa: Logotipos, Colores, Tipografías.*
+### Variaciones
+| Variante | Uso recomendado |
+| :--- | :--- |
+| Full color | Fondos claros/blancos (uso principal). |
+| Monocromo (blanco) | Fondos oscuros o impresión a un color. |
 
----
+Elemento ilustrativo de soporte (no es una variación del logo): ilustración de un
+"reportero de campo" en una estación de cocina callejera — refuerza la vibra de
+"field notes"; uso en materiales de marketing, no en el wordmark.
 
-## 1. Logotipo
+## 2. Paleta de colores
 
-El logotipo de Atlas Nexus es una representación estilizada que combina un compás de cartografía con las letras 'A' y 'N', centradas alrededor de un nodo de datos circular. Simboliza la navegación a través de la complejidad de los datos y el mapeado de nuevas fronteras.
-
-### Variaciones del Logotipo
-
-El logotipo principal debe usarse siempre que sea posible sobre un fondo blanco o claro.
-
-| Variante | Uso Recomendado | Referencia Visual |
-| :--- | :--- | :--- |
-| **Full Color (Azul Espacial y Naranja Estelar)** | Uso principal en fondos claros/blancos. | Ver imagen superior (Logo principal) |
-| **Monocromo (Blanco o Gris)** | Para fondos oscuros, impresión en un solo color o marca de agua. | Ver imagen superior (Variaciones) |
-
-### Pautas de Uso del Logotipo
-
-*   Manten siempre un margen de espacio 'respirable' alrededor del logo.
-*   No estires, distorsiones ni cambies la perspectiva del logo.
-*   No cambies los colores del logo fuera de las variaciones aprobadas.
-
----
-
-## 2. Paleta de Colores
-
-Nuestra paleta de colores está inspirada en la exploración espacial y la claridad de los datos. Estos colores deben usarse para establecer la jerarquía visual en la documentación, gráficos y la interfaz de usuario.
-
-| Nombre del Color | Descripción/Uso | Código Hex | Referencia Visual |
+| Nombre | Descripción | Hex | Uso |
 | :--- | :--- | :--- | :--- |
-| **Deep Space Blue** (Azul Espacial Profundo) | Acento Principal (60%). Para fondos oscuros, texto principal y elementos clave. | `#1A253A` | [ ](https://via.placeholder.com/15/1A253A?text=+) |
-| **Stellar Orange** (Naranja Estelar) | Acento Secundario (30%). Para llamadas a la acción, resaltados y énfasis. | `#F47C3C` | [ ](https://via.placeholder.com/15/F47C3C?text=+) |
-| **Lunar Gray** (Gris Lunar) | Color de Fondo (5%). Para contenedores secundarios y fondos ligeros. | `#E5E9EC` | [ ](https://via.placeholder.com/15/E5E9EC?text=+) |
-| **Data White** (Blanco de Datos) | Texto y Espacio Negativo (5%). Para texto principal sobre fondos oscuros y el lienzo general. | `#FFFFFF` | [ ](https://via.placeholder.com/15/FFFFFF?text=+) |
+| **Saigon Night Blue** | Azul denim profundo, desgastado por la ciudad | `#1A2A44` | Acento principal — texto, botones, secciones oscuras (`ink`/`primary`) |
+| **Oaxacan Chili Orange** | Naranja intenso y terroso | `#F47C3C` | CTA/acento secundario (`accent`) |
+| **Bangkok Pavement Gray** | Gris cemento neutro y urbano | `#E1E8EC` | Fondo secundario/contenedores (`surface`) |
+| **White** | Blanco limpio | `#FFFFFF` | Lienzo general (`bg`) |
 
----
+Mapeo a tokens de Tailwind (`apps/web/tailwind.config.ts`): `bg`, `surface`, `ink`,
+`muted`, `primary`, `primary-deep`, `accent`, `accent-deep` — ver ese archivo para los
+valores exactos derivados (variantes profundas/mutadas).
 
 ## 3. Tipografía
 
-Utilizamos tipografías limpias y modernas para garantizar la legibilidad en entornos digitales y técnicos.
+- **Titulares (H1/H2/H3)**: Inter, SemiBold/Bold.
+- **Cuerpo, labels, captions**: Roboto, Regular/Medium.
 
-### Tipografía Principal (Titulares)
+Ya implementado en `apps/web/src/app/layout.tsx` (`next/font/google`) y
+`tailwind.config.ts` (`font-display` = Inter, `font-sans` = Roboto).
 
-**Fuente:** `Inter` (Sans-serif)
-*   **Usos:** Títulos de sección (`#`, `##`, `###`), encabezados de gráficos y elementos de interfaz.
-*   **Pesos Recomendados:** Bold, SemiBold.
+## 4. Mood / principio de marca
 
-### Tipografía Secundaria (Cuerpo de Texto)
+Cuatro paneles de mood board: mapa urbano dibujado a mano con marcadores de puestos de
+comida, un "reportero de campo" trabajando en una cocina callejera, primer plano de un
+plato local, e interacción humana entre reporteros y locales en la calle.
 
-**Fuente:** `Roboto` (Sans-serif)
-*   **Usos:** Párrafos, listas, descripciones y documentación general.
-*   **Pesos Recomendados:** Regular, Medium.
+> **"Truth is found in the street, not the boardroom."**
 
-### Ejemplo de Jerarquía
-
-> `# Título Principal (Inter Bold)`
-> `## Subtítulo (Inter SemiBold)`
-> `Este es un ejemplo de cuerpo de texto usando Roboto Regular. Charting the nexus of data.`
+Este mood/tagline se documenta aquí como referencia de identidad visual y tono de
+marca; el copy de producto en `apps/web/src/content/brand.ts` (marketplace de
+anfitriones/hoteles) **no se reescribió** para adoptar esta narrativa — se mantiene el
+producto ya definido en `apps/web/PRODUCT.md` y `docs/specs/`. Si más adelante se decide
+alinear también el copy a este mood de "field notes", es un cambio aparte a discutir.
 
 ---
 
-## 4. Guía de Uso General
-
-*   **Consistencia:** Utilice siempre la paleta de colores y las fuentes especificadas. No introduzca nuevos colores o fuentes sin aprobación.
-*   **Claridad:** Asegúrese de que haya suficiente contraste entre el texto y el fondo (por ejemplo, Data White sobre Deep Space Blue).
-*   **Simplicidad:** La identidad de Atlas Nexus es técnica y directa. Mantenga los diseños limpios y centrados en los datos.
-
-Para cualquier pregunta sobre el uso de la marca, por favor contacte al equipo de diseño del proyecto.
-```
+**Nota sobre los datos recibidos**: el brand kit original traía, junto a cada hex, una
+columna de "código RGB" que no correspondía matemáticamente a su hex (ej. `#1A2A44`
+junto a "91, 244, 253", que sería un celeste brillante, no ese azul oscuro). Esos
+valores se ignoraron por inconsistentes; los HEX de la tabla arriba son los que se
+aplicaron en el código.

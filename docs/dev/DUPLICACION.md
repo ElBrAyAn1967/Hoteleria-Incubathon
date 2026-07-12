@@ -1,12 +1,17 @@
 # Playbook de duplicación — segundo proyecto del hackathon
 
-Este repo va a servir de base para un **segundo proyecto** presentado en el hackathon:
+> **Estado (2026-07-12): duplicación ya realizada.** El segundo proyecto ("Transeúnte")
+> ya se creó en `https://github.com/RiveraTheCreator/Inubaton-transeune`. A partir de
+> ahora **ambos repos son aislados** — no se vuelve a sincronizar contenido entre ellos;
+> cada uno evoluciona por su cuenta. Este playbook queda como referencia por si en el
+> futuro se necesita duplicar de nuevo (un tercer proyecto, etc.).
+
+Este repo sirvió de base para un **segundo proyecto** presentado en el hackathon:
 mismo producto, mismo backend (`apps/api`), mismo cerebro For3s y mismo guion de chat,
 mismo diferenciador (pago instantáneo al anfitrión) — **solo cambia la identidad visual
-y se agregan componentes nuevos** en el frontend. El segundo proyecto vivirá en un **repo
-aislado**, armado copiando y pegando este código en una etapa posterior (no ahora).
+y se agregan componentes nuevos** en el frontend.
 
-Si eres un agente de IA ejecutando esa duplicación, sigue estos pasos en orden:
+Si eres un agente de IA ejecutando una duplicación similar, sigue estos pasos en orden:
 
 1. **Copia el repo completo** al nuevo destino (nuevo repo git, remoto propio).
 
@@ -17,7 +22,7 @@ Si eres un agente de IA ejecutando esa duplicación, sigue estos pasos en orden:
    - Qué componentes nuevos quiere agregar sobre esta base.
 
    No rellenes `apps/web/src/content/brand.ts` ni los hex de `tailwind.config.ts` con
-   valores de ejemplo — deja el placeholder actual (Atlas Nexus / "anfitriones") hasta
+   valores de ejemplo — deja el placeholder actual (NavigoX) hasta
    tener la respuesta real del usuario.
 
 3. **Reemplaza `apps/web/src/content/brand.ts` completo** con la identidad nueva —

@@ -8,10 +8,10 @@
 // en vez de inventarlo.
 
 export const brand = {
-  siteName: "anfitriones",
+  siteName: "NavigoX",
 
   meta: {
-    title: "Anfitriones — vive la ciudad con quien la vive",
+    title: "NavigoX — vive la ciudad con quien la vive",
     description:
       "Conecta con una persona local real que te muestra su ciudad. Experiencias curadas, humanas, no un catálogo.",
   },
@@ -99,9 +99,9 @@ export const brand = {
 
   footer: {
     tagline: "Vive la ciudad con quien la vive. Turismo con alma local, curado y humano.",
-    email: "hola@anfitriones.mx",
+    email: "hola@navigox.mx",
     whatsappLabel: "WhatsApp",
-    legal: "© 2026 Anfitriones — Incubathon. Recomendaciones potenciadas por For3s (vía API).",
+    legal: "© 2026 NavigoX — Incubathon. Recomendaciones potenciadas por For3s (vía API).",
   },
 
   chat: {

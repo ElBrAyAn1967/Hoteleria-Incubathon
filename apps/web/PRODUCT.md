@@ -21,17 +21,18 @@ quién sea el anfitrión (el de arquitectura porfiriana vs. el de la escena de m
   ≤50 llaves que los recomiendan.
 
 ## Mood (la escena, granular)
-> Actualizado 2026-07-11: se adoptó el kit de marca **Atlas Nexus** (`docs/design/brand_kit.md`)
-> tal cual, reemplazando la paleta verde/mood botánico anterior. El mood ya no es "costa de
-> Oaxaca" sino la identidad técnica de Atlas Nexus (azul espacial + naranja estelar). Modo
-> CLARO siempre.
+> Actualizado 2026-07-12: se reemplazó el placeholder **Atlas Nexus** por el kit de marca
+> definitivo **NavigoX** (`docs/design/brand_kit.md`) — azul "Saigon Night" + naranja
+> "Oaxacan Chili". Este cambio es solo de **identidad visual** (paleta/tipografía/nombre);
+> el copy/producto del marketplace de anfitriones (`apps/web/src/content/brand.ts`,
+> `docs/specs/`) no se reescribió. Modo CLARO siempre.
 
 ## Color strategy
-Paleta oficial **Atlas Nexus** (ver `docs/design/brand_kit.md`):
-- Deep Space Blue `#1A253A` — acento principal (60%): texto, botones, secciones oscuras.
-- Stellar Orange `#F47C3C` — acento secundario (30%): CTA, resaltados, puntos de calor.
-- Lunar Gray `#E5E9EC` — fondo secundario (5%): contenedores/secciones alternas.
-- Data White `#FFFFFF` — lienzo general y texto sobre fondos oscuros (5%).
+Paleta oficial **NavigoX** (ver `docs/design/brand_kit.md`):
+- Saigon Night Blue `#1A2A44` — acento principal: texto, botones, secciones oscuras.
+- Oaxacan Chili Orange `#F47C3C` — acento secundario: CTA, resaltados, puntos de calor.
+- Bangkok Pavement Gray `#E1E8EC` — fondo secundario: contenedores/secciones alternas.
+- White `#FFFFFF` — lienzo general y texto sobre fondos oscuros.
 - Tipografía: Inter (titulares, Bold/SemiBold) + Roboto (cuerpo, Regular/Medium).
 
 ## Anti-tells (lo que NO hacemos — orden de impeccable)
@@ -39,7 +40,7 @@ Paleta oficial **Atlas Nexus** (ver `docs/design/brand_kit.md`):
 - Sin grid de cards idénticas (icono+título+texto repetido).
 - Sin eyebrow tracked-uppercase sobre cada sección.
 - Sin cream/beige de fondo, sin gradient text, sin glassmorphism decorativo.
-- El "wow" viene de imágenes reales de experiencias + tipografía + la paleta Atlas Nexus, no de efectos.
+- El "wow" viene de imágenes reales de experiencias + tipografía + la paleta NavigoX, no de efectos.
 
 ## Diferenciador (lo que se comunica)
 Conexión humana real + curación (no catálogo) + el cerebro que personaliza + pago justo e
