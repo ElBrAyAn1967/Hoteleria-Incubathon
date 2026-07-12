@@ -9,9 +9,10 @@
 //   const seguro = secureRecord(datosDelViajero, ["nombre", "email", "telefono", "ubicacion"]);
 //   // → 'seguro' tiene esos campos cifrados y listos para guardar/transmitir.
 //
-// Hoy la persistencia real (DB) aún no existe (ver issue de schema). Este módulo
-// deja el CONTRATO listo: cuando se conecte la DB, se guarda 'secureRecord(...)'
-// y se lee con 'readRecord(...)'. Cero cambios en los llamadores.
+// NO hay base de datos propia: la memoria/persistencia es el CEREBRO For3s (grafo
+// + episodios), consumido por API. Este módulo cifra el dato antes de mandarlo al
+// cerebro (o de auditarlo localmente). 'secureRecord(...)' prepara, 'readRecord(...)'
+// recupera. Cero cambios en los llamadores.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { encryptFields, decryptFields, anonId } from "./crypto";
@@ -40,7 +41,7 @@ export const SENSITIVE_FIELDS = [
  * Prepara un registro para persistir: cifra los campos sensibles (los que pases
  * explícitamente + los de SENSITIVE_FIELDS que existan en el objeto) y añade un
  * id anónimo estable. Devuelve un objeto nuevo listo para guardar en cualquier
- * lado (DB, log, cola) sin exponer PII en claro.
+ * lado (el cerebro For3s, un log, una cola) sin exponer PII en claro.
  */
 export function secureRecord<T extends Record<string, unknown>>(
   data: T,

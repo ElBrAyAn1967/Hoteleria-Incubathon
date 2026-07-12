@@ -28,15 +28,16 @@ export async function POST(req: Request) {
     return Response.json({ error: "mensaje inválido" }, { status: 400 });
   }
 
-  // 🔐 Registro cifrado del evento (id del viajero + su mensaje). 'seguro' queda
-  // listo para persistir/auditar sin exponer PII en claro. Cuando se conecte la
-  // DB (ver issue de schema), aquí se guarda 'seguro' directamente.
+  // 🔐 Registro cifrado del evento (id del viajero + su mensaje). No hay DB propia:
+  // la memoria es el CEREBRO For3s. El mensaje ya viaja a For3s más abajo (donde se
+  // convierte en episodio del hilo de esta sesión). 'seguro' queda cifrado por si
+  // se audita localmente, sin exponer PII en claro.
   const seguro = secureRecord({
     clientId: String(body.clientId ?? "web-anon"),
     mensaje: texto,
     ts: new Date().toISOString(),
   });
-  void seguro; // (persistencia pendiente de la DB — el dato ya viaja cifrado)
+  void seguro;
 
   const API_URL = process.env.FOR3S_API_URL;
   const API_KEY = process.env.FOR3S_API_KEY;

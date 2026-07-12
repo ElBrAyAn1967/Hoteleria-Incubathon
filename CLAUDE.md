@@ -95,12 +95,15 @@ Reglas mecánicas:
 5. El formato cifrado es `enc:v1:...` (versionado) — permite rotar algoritmo/llave a futuro sin
    romper datos viejos. `isEncrypted()` detecta si un valor ya está cifrado (idempotente).
 
-### 🧠 TRAZABILIDAD (capa de analítica — todo el journey se registra por un punto único)
-**El sistema NO tiene base de datos propia para analítica: la memoria es el cerebro consumido por
-API.** Todo el flujo del usuario (navegación, tiempos, scroll, clicks, formularios, chat, fin de
-flujo) se captura y se manda a nuestro endpoint interno, que lo cifra y lo reenvía al cerebro
-(caja negra). Cada sesión de visitante (su `clientId` anónimo) = un hilo, para que el cerebro
-detecte patrones/episodios.
+### 🧠 TRAZABILIDAD + PERSISTENCIA (el cerebro es la memoria — NO hay base de datos propia)
+**El sistema NO tiene ni debe tener base de datos (Postgres/Prisma/etc.). La memoria y
+persistencia son el CEREBRO For3s (grafo + episodios), consumido por API — es más potente que
+una DB normal.** TODO se manda a For3s: navegación, tiempos, scroll, clicks, **reservaciones**,
+formularios/cotizaciones, **lo que el usuario escribe**, chat, fin de flujo. Cada evento se
+cifra y se reenvía al cerebro desde un endpoint server-side (caja negra). Cada sesión de
+visitante (su `clientId` anónimo) = un hilo, para que el cerebro detecte patrones/episodios.
+**No agregues `DATABASE_URL`, Prisma, Drizzle, migraciones ni schema — si un flujo necesita
+guardar algo, se manda a For3s.**
 
 Mecánica (aplícala siempre, sin cablear pantalla por pantalla):
 1. **Captura automática:** `TrackingProvider` (montado una vez en `layout.tsx`) ya traza

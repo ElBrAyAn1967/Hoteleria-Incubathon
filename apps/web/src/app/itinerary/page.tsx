@@ -80,7 +80,7 @@ export default function ItineraryPage() {
 
       <div className="flex shrink-0 items-center justify-between gap-3 border-t border-surface p-6">
         <WhatsAppButton />
-        <Link href="/feedback" className="btn-primary flex-1 justify-center rounded-xl">
+        <Link href="/feedback" className="btn-primary flex-1 justify-center rounded-xl" data-track="itinerary_a_resena">
           Itinerario
         </Link>
       </div>

@@ -120,7 +120,7 @@ bun run build          # build de producción del frontend (apps/web)
 **Variables de entorno clave** (ver `.env.example`):
 - `NEXT_PUBLIC_API_URL` — única variable pública, apunta a nuestro propio backend (`apps/api`), nunca a For3s.
 - `FOR3S_API_URL` / `FOR3S_API_KEY` — credenciales del cerebro For3s (caja negra). **Server-side only, jamás con prefijo `NEXT_PUBLIC_`.** Sin estas variables, el chat responde con un fallback cortés en vez de fallar.
-- `DATABASE_URL`, `NEXT_PUBLIC_CHAIN_ID` / `WEB3_RPC_URL` — persistencia y pieza web3, opcionales para levantar la demo local.
+- `NEXT_PUBLIC_CHAIN_ID` / `WEB3_RPC_URL` — pieza web3, opcional para levantar la demo local. **No hay base de datos propia:** la memoria/persistencia es el cerebro For3s (grafo + episodios), consumido por API — reservaciones, clicks y lo que el usuario escribe se cifran y se mandan a For3s (ver `CLAUDE.md` → TRAZABILIDAD).
 
 Antes de abrir un PR: `bun run build` en `apps/web` debe pasar. Ver `CLAUDE.md` para las reglas duras (caja negra de For3s, flujo de ramas) y `docs/dev/` para los patrones de stack.
 

@@ -59,10 +59,11 @@ export default function RequestPage() {
     // Ya no se guarda PII en claro en el navegador. Si el server falla, la demo
     // continúa igual (no bloquea el flujo).
     try {
+      const cid = typeof window !== "undefined" ? localStorage.getItem("anf_cid") : null;
       await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(request),
+        body: JSON.stringify({ ...request, clientId: cid ?? "web-anon" }),
       });
     } catch {
       /* la demo no se cae si el registro falla */

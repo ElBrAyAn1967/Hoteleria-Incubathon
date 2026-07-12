@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { track } from "@/lib/track";
 import { BrandBar } from "@/components/ui/BrandBar";
 import { Avatar } from "@/components/ui/Avatar";
 import { SearchInput } from "@/components/ui/SearchInput";
@@ -27,6 +28,17 @@ export default function HomePage() {
       ),
     [busqueda],
   );
+
+  // 🧠 "Lo que escribe": traza el término de búsqueda cuando el usuario pausa
+  // (debounce 800ms) → el cerebro ve qué buscan los viajeros. Sin ruido por tecla.
+  useEffect(() => {
+    const q = busqueda.trim();
+    if (q.length < 2) return;
+    const t = setTimeout(() => {
+      track("search", { ruta: "/home", etiqueta: "busqueda_dashboard", meta: { termino: q, resultados: filtrado.length } });
+    }, 800);
+    return () => clearTimeout(t);
+  }, [busqueda, filtrado.length]);
 
   return (
     <main className="min-h-screen bg-bg p-6">

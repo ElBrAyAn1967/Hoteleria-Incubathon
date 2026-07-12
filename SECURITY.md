@@ -43,6 +43,6 @@ Nos comprometemos a responder en un plazo razonable y a acreditar tu aporte si l
 
 ## Alcance
 
-Este proyecto es un MVP de hackathon en evolución. Algunas piezas (pagos web3, base de datos)
-están en el roadmap y aún no endurecidas para producción. No lo uses con datos reales de
+Este proyecto es un MVP de hackathon en evolución. Algunas piezas (pagos web3) están en el
+roadmap y aún no endurecidas para producción. No lo uses con datos reales de
 clientes hasta que esas capas maduren.

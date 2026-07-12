@@ -39,7 +39,7 @@ export default function ExperiencePage() {
         ))}
       </section>
 
-      <button type="button" className="w-full rounded-full bg-primary py-3.5 text-sm font-semibold text-bg">
+      <button type="button" data-track="experience_publicar" className="w-full rounded-full bg-primary py-3.5 text-sm font-semibold text-bg">
         Publicar experiencia
       </button>
     </main>
